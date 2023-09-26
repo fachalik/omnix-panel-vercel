@@ -9,6 +9,7 @@ import { useAlertStore } from './alert';
 import { UserType } from '@/models/authModels';
 
 import { logout } from '@/service/auth';
+import { useRouter } from 'next/navigation';
 
 interface StoreAuth {
   token: string | null;
@@ -37,6 +38,7 @@ export const useAuthStore = create<IStoreAuth>()(
         ...initialState,
 
         async login(payload: { email: string; password: string }) {
+          const { push } = useRouter();
           const response: UserType = await postLogin(payload);
           console.log('RESPONSE>>>>', response);
           if (response.user.status.name.toLowerCase() !== 'inactive') {
@@ -57,7 +59,7 @@ export const useAuthStore = create<IStoreAuth>()(
               type: 'success',
             };
             await useAlertStore.getState().setAlert(payload);
-            window.location.replace('/dashboard');
+            push('/dashboard');
           } else {
             console.log('inactive');
             const payload = await {

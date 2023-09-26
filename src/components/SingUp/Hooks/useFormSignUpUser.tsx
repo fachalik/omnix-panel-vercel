@@ -4,8 +4,10 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { timeout } from '../../../utils/utilitys';
 import { register } from '@/service/auth';
+import { useRouter } from 'next/navigation';
 
 export default function useFormSignUpUser() {
+  const { push } = useRouter();
   const initialValues: any = {
     email: '',
     phoneNumber: '',
@@ -47,7 +49,7 @@ export default function useFormSignUpUser() {
       const response: any = await register(payload);
 
       if (Object.keys(response).length !== 0) {
-        window.location.replace('/confirm');
+        push('/confirm');
       }
 
       console.log(payload);

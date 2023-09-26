@@ -137,7 +137,7 @@ export default function Sidebar() {
           padding: 5,
           marginTop: 20,
           overflow: 'hidden',
-          height: window.innerHeight - 150,
+          height: '100vh - 150',
           position: 'relative',
           backgroundColor: palette.primary.dark,
         }}

@@ -8,7 +8,9 @@ const useIsMobile = () => {
 
   React.useEffect(() => {
     const onResize = () => {
-      setIsMobile(getIsMobile());
+      if (typeof window !== 'undefined') {
+        setIsMobile(getIsMobile());
+      }
     };
 
     window.addEventListener('resize', onResize);
