@@ -3,7 +3,7 @@
 import React from 'react';
 import Image from 'next/image';
 
-import { logout } from '@/service/auth';
+import { adminRoutes, userRoutes } from '@/routes';
 
 import {
   UploadOutlined,
@@ -33,6 +33,18 @@ export default function Sidebar() {
   } = useAuthStore((state) => state);
 
   const isMobile = useIsMobile();
+
+  const route = () => {
+    switch (User?.user.role.name.toLocaleLowerCase()) {
+      case 'admin':
+        return adminRoutes;
+
+      case 'user':
+        return userRoutes;
+      default:
+        return [];
+    }
+  };
 
   const items: MenuProps['items'] = [
     {
@@ -137,30 +149,18 @@ export default function Sidebar() {
           padding: 5,
           marginTop: 20,
           overflow: 'hidden',
-          height: '100vh - 150',
+          height: window.innerHeight - 150,
           position: 'relative',
           backgroundColor: palette.primary.dark,
         }}
         theme="dark"
         mode="inline"
         defaultSelectedKeys={['1']}
-        items={[
-          {
-            key: '1',
-            icon: <UserOutlined />,
-            label: 'nav 1',
-          },
-          {
-            key: '2',
-            icon: <VideoCameraOutlined />,
-            label: 'nav 2',
-          },
-          {
-            key: '3',
-            icon: <UploadOutlined />,
-            label: 'nav 3',
-          },
-        ]}
+        items={
+          User?.user.role.name.toLocaleLowerCase() === 'admin'
+            ? adminRoutes
+            : userRoutes
+        }
       />
       <Dropdown menu={{ items }} placement="topRight" trigger={['click']}>
         <div

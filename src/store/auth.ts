@@ -21,6 +21,8 @@ interface IStoreAuth {
 
   login: (payload: { email: string; password: string }) => void;
 
+  setAuth: (payload: any) => void;
+
   logoutAuth: () => void;
 }
 
@@ -73,9 +75,24 @@ export const useAuthStore = create<IStoreAuth>()(
             await useAlertStore.getState().setAlert(payload);
           }
         },
+
         logoutAuth() {
           logout();
           set(() => initialState, false, 'omnix-reset');
+          localStorage.clear();
+        },
+
+        setAuth(payload: any) {
+          set(
+            (state: any) => ({
+              auth: {
+                token: payload.token,
+                User: payload,
+                error: '',
+              },
+            }),
+            false
+          );
           localStorage.clear();
         },
       }),

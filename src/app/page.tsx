@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { Row, Col, Card, Button, Divider } from 'antd';
 
 import FormSignIn from '@/components/SingIn/Form/FormSignIn';
-// import thirdPartyLogin from '@/lib/third-party-login';
+
 import useIsMobile from '@/hooks/useIsMobile';
 import { palette } from '@/theme/themeConfig';
 
@@ -16,6 +16,8 @@ import Loading from '@/components/Loading';
 
 import { useRouter } from 'next/navigation';
 
+import thirdPartyLogin from '@/lib/third-party-login';
+
 export default function Home() {
   const { push } = useRouter();
   const isMobile = useIsMobile();
@@ -23,13 +25,12 @@ export default function Home() {
   const { isLoading, isNotLogin } = useCheckIsNotLogin();
 
   const googleLogin = async () => {
-    push(
+    thirdPartyLogin(
       `https://accounts.google.com/o/oauth2/v2/auth/oauthchooseaccount?response_type=code&client_id=${process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}&scope=openid%20email%20profile&redirect_uri=http://localhost:3000/google&service=lso&o2v=2&theme=glif&flowName=GeneralOAuthFlow`
     );
-    // const req: any = await thirdPartyLogin(
+    // push(
     //   `https://accounts.google.com/o/oauth2/v2/auth/oauthchooseaccount?response_type=code&client_id=${process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}&scope=openid%20email%20profile&redirect_uri=http://localhost:3000/google&service=lso&o2v=2&theme=glif&flowName=GeneralOAuthFlow`
-    // )!;
-    // console.log(req);
+    // );
   };
 
   if (isLoading) {
