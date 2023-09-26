@@ -40,7 +40,7 @@ export default function FormSignIn() {
             Boolean(formik.touched.email && formik.errors.email) ? 'error' : ''
           }
           hasFeedback
-          help={formik.touched.email ? formik.errors.email : ''}
+          // help={formik.touched.email ? formik.errors.email : ''}
           // rules={[{ required: true, message: 'Please input your email!' }]}
         >
           <Input
@@ -67,7 +67,7 @@ export default function FormSignIn() {
               : ''
           }
           hasFeedback
-          help={formik.touched.password ? formik.errors.password : ''}
+          // help={formik.touched.password ? formik.errors.password : ''}
           // help={}
           // rules={[{ required: true, message: 'Please input your password!' }]}
         >

@@ -46,7 +46,7 @@ export default function FormSignUpReseller() {
               : ''
           }
           hasFeedback
-          help={formik.touched.firstName ? formik.errors.firstName : ''}
+          // help={formik.touched.firstName ? formik.errors.firstName : ''}
         >
           <Input
             status={
@@ -73,7 +73,7 @@ export default function FormSignUpReseller() {
               : ''
           }
           hasFeedback
-          help={formik.touched.lastName ? formik.errors.lastName : ''}
+          // help={formik.touched.lastName ? formik.errors.lastName : ''}
         >
           <Input
             status={
@@ -98,7 +98,7 @@ export default function FormSignUpReseller() {
             Boolean(formik.touched.email && formik.errors.email) ? 'error' : ''
           }
           hasFeedback
-          help={formik.touched.email ? formik.errors.email : ''}
+          // help={formik.touched.email ? formik.errors.email : ''}
         >
           <Input
             status={
@@ -125,7 +125,7 @@ export default function FormSignUpReseller() {
               : ''
           }
           hasFeedback
-          help={formik.touched.password ? formik.errors.password : ''}
+          // help={formik.touched.password ? formik.errors.password : ''}
         >
           <Input.Password
             name="password"
@@ -149,11 +149,11 @@ export default function FormSignUpReseller() {
               : ''
           }
           hasFeedback
-          help={
-            formik.touched.password_confirmation
-              ? formik.errors.password_confirmation
-              : ''
-          }
+          // help={
+          //   formik.touched.password_confirmation
+          //     ? formik.errors.password_confirmation
+          //     : ''
+          // }
         >
           <Input.Password
             name="password_confirmation"

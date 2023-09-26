@@ -47,7 +47,7 @@ export default function FormSignUpUser() {
               : ''
           }
           hasFeedback
-          help={formik.touched.firstName ? formik.errors.firstName : ''}
+          // help={formik.touched.firstName ? formik.errors.firstName : ''}
         >
           <Input
             status={
@@ -74,7 +74,7 @@ export default function FormSignUpUser() {
               : ''
           }
           hasFeedback
-          help={formik.touched.lastName ? formik.errors.lastName : ''}
+          // help={formik.touched.lastName ? formik.errors.lastName : ''}
         >
           <Input
             status={
@@ -99,7 +99,7 @@ export default function FormSignUpUser() {
             Boolean(formik.touched.email && formik.errors.email) ? 'error' : ''
           }
           hasFeedback
-          help={formik.touched.email ? formik.errors.email : ''}
+          // help={formik.touched.email ? formik.errors.email : ''}
         >
           <Input
             status={
@@ -126,7 +126,7 @@ export default function FormSignUpUser() {
               : ''
           }
           hasFeedback
-          help={formik.touched.password ? formik.errors.password : ''}
+          // help={formik.touched.password ? formik.errors.password : ''}
         >
           <Input.Password
             name="password"
@@ -150,11 +150,11 @@ export default function FormSignUpUser() {
               : ''
           }
           hasFeedback
-          help={
-            formik.touched.password_confirmation
-              ? formik.errors.password_confirmation
-              : ''
-          }
+          // help={
+          //   formik.touched.password_confirmation
+          //     ? formik.errors.password_confirmation
+          //     : ''
+          // }
         >
           <Input.Password
             name="password_confirmation"
@@ -175,7 +175,7 @@ export default function FormSignUpUser() {
               : ''
           }
           hasFeedback
-          help={formik.touched.referalCode ? formik.errors.referalCode : ''}
+          // help={formik.touched.referalCode ? formik.errors.referalCode : ''}
         >
           <Input
             placeholder="Insert your referal code"
