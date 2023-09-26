@@ -2,13 +2,17 @@
 
 import React from 'react';
 import { Button, Form, Input } from 'antd';
-import useFormForgetPassword from '../Hooks/useFormForgetPassword';
+import useFormResetPassword from '../Hooks/useFormResetPassword';
+import { useSearchParams } from 'next/navigation';
 
 type FieldType = {
-  email?: string;
+  password?: string;
+  password_confirmation?: string;
 };
 
-export default function FormForgetPassword() {
+export default function FormResetPassword() {
+  const searchParams = useSearchParams();
+  const hash = searchParams.get('hash');
   const onFinish = (values: any) => {
     console.log('Success:', values);
   };
@@ -17,7 +21,7 @@ export default function FormForgetPassword() {
     console.log('Failed:', errorInfo);
   };
 
-  const formik: any = useFormForgetPassword();
+  const formik: any = useFormResetPassword(hash ?? '');
 
   return (
     <main style={{ width: '100%' }}>
@@ -32,24 +36,50 @@ export default function FormForgetPassword() {
         onFinishFailed={onFinishFailed}
       >
         <div style={{ fontSize: 12, fontWeight: 'bold', marginBottom: 3 }}>
-          Email
+          Create New Password
         </div>
         <Form.Item<FieldType>
-          name="email"
+          name="password"
           validateStatus={
-            Boolean(formik.touched.email && formik.errors.email) ? 'error' : ''
+            Boolean(formik.touched.password && formik.errors.password)
+              ? 'error'
+              : ''
           }
           hasFeedback
-          help={formik.touched.email ? formik.errors.email : ''}
+          // rules={[{ required: true, message: 'Please input your username!' }]}
+          help={formik.touched.password ? formik.errors.password : ''}
         >
-          <Input
-            status={
-              Boolean(formik.touched.email && formik.errors.email)
-                ? 'error'
-                : ''
-            }
-            name="email"
-            value={formik.values.email}
+          <Input.Password
+            name="password"
+            value={formik.values.password}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+          />
+        </Form.Item>
+
+        <div style={{ fontSize: 12, fontWeight: 'bold', marginBottom: 3 }}>
+          Confirm Password
+        </div>
+        <Form.Item<FieldType>
+          name="password_confirmation"
+          validateStatus={
+            Boolean(
+              formik.touched.password_confirmation &&
+                formik.errors.password_confirmation
+            )
+              ? 'error'
+              : ''
+          }
+          hasFeedback
+          help={
+            formik.touched.password_confirmation
+              ? formik.errors.password_confirmation
+              : ''
+          }
+        >
+          <Input.Password
+            name="password_confirmation"
+            value={formik.values.password_confirmation}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
           />

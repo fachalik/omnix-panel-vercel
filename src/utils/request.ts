@@ -27,7 +27,6 @@ http.interceptors.response.use(
   (error) => {
     if (error.response !== undefined) {
       if (error.response.status === 401) {
-        // removeLogin();
         if (window.location.pathname.includes('login')) {
           window.location.replace(window.location.pathname);
         } else {

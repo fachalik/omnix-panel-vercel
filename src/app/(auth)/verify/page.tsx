@@ -22,9 +22,9 @@ function Page() {
         Please verify your email
       </p>
       <p style={{ fontWeight: 600, fontSize: 14, textAlign: 'center' }}>
-        {`We sent an email to ${'test'} for verification.`}
+        {`We sent an email.`}
         <br />
-        {`Please check your email to verify and activate your account.`}
+        {`Please check your email.`}
       </p>
       <Button
         onClick={() => push('/')}

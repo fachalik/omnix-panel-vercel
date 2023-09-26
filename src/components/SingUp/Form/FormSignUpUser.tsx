@@ -23,7 +23,7 @@ export default function FormSignUpUser() {
     console.log('Failed:', errorInfo);
   };
 
-  const formik = useFormSignUpUser();
+  const formik: any = useFormSignUpUser();
 
   return (
     <main style={{ width: '100%', height: '100%', overflow: 'scroll' }}>
@@ -47,7 +47,8 @@ export default function FormSignUpUser() {
               : ''
           }
           hasFeedback
-          // help={formik.touched.firstName ? formik.errors.firstName : ''}
+          // rules={[{ required: true, message: 'Please input your first name!' }]}
+          help={formik.touched.firstName ? formik.errors.firstName : ''}
         >
           <Input
             status={
@@ -74,7 +75,8 @@ export default function FormSignUpUser() {
               : ''
           }
           hasFeedback
-          // help={formik.touched.lastName ? formik.errors.lastName : ''}
+          // rules={[{ required: true, message: 'Please input your last name!' }]}
+          help={formik.touched.lastName ? formik.errors.lastName : ''}
         >
           <Input
             status={
@@ -99,7 +101,8 @@ export default function FormSignUpUser() {
             Boolean(formik.touched.email && formik.errors.email) ? 'error' : ''
           }
           hasFeedback
-          // help={formik.touched.email ? formik.errors.email : ''}
+          // rules={[{ required: true, message: 'Please input your email!' }]}
+          help={formik.touched.email ? formik.errors.email : ''}
         >
           <Input
             status={
@@ -116,6 +119,36 @@ export default function FormSignUpUser() {
         </Form.Item>
 
         <div style={{ fontSize: 12, fontWeight: 'bold', marginBottom: 3 }}>
+          Phone Number
+        </div>
+        <Form.Item<FieldType>
+          name="phoneNumber"
+          validateStatus={
+            Boolean(formik.touched.phoneNumber && formik.errors.phoneNumber)
+              ? 'error'
+              : ''
+          }
+          hasFeedback
+          // rules={[
+          //   { required: true, message: 'Please input your phonenumber!' },
+          // ]}
+          help={formik.touched.phoneNumber ? formik.errors.phoneNumber : ''}
+        >
+          <Input
+            status={
+              Boolean(formik.touched.phoneNumber && formik.errors.phoneNumber)
+                ? 'error'
+                : ''
+            }
+            placeholder="Ex : 628123456789"
+            name="phoneNumber"
+            value={formik.values.phoneNumber}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+          />
+        </Form.Item>
+
+        <div style={{ fontSize: 12, fontWeight: 'bold', marginBottom: 3 }}>
           Create New Password
         </div>
         <Form.Item<FieldType>
@@ -126,7 +159,8 @@ export default function FormSignUpUser() {
               : ''
           }
           hasFeedback
-          // help={formik.touched.password ? formik.errors.password : ''}
+          // rules={[{ required: true, message: 'Please input your username!' }]}
+          help={formik.touched.password ? formik.errors.password : ''}
         >
           <Input.Password
             name="password"
@@ -150,11 +184,11 @@ export default function FormSignUpUser() {
               : ''
           }
           hasFeedback
-          // help={
-          //   formik.touched.password_confirmation
-          //     ? formik.errors.password_confirmation
-          //     : ''
-          // }
+          help={
+            formik.touched.password_confirmation
+              ? formik.errors.password_confirmation
+              : ''
+          }
         >
           <Input.Password
             name="password_confirmation"
@@ -175,7 +209,7 @@ export default function FormSignUpUser() {
               : ''
           }
           hasFeedback
-          // help={formik.touched.referalCode ? formik.errors.referalCode : ''}
+          help={formik.touched.referalCode ? formik.errors.referalCode : ''}
         >
           <Input
             placeholder="Insert your referal code"

@@ -44,16 +44,20 @@ export default function useFormSignUpUser() {
     onSubmit: async (value) => {
       delete value.password_confirmation;
 
-      const payload = { value };
+      const payload = { ...value };
+      // console.log(payload);
 
-      const response: any = await register(payload);
+      await register(payload)
+        .then(() => push('/verify'))
+        .catch((err) => console.log(err));
+      // console.log('Response', response);
 
-      if (Object.keys(response).length !== 0) {
-        push('/confirm');
-      }
+      // if (Object.keys(response).length !== 0) {
+      //   push('/confirm');
+      // }
 
-      console.log(payload);
-      await timeout(1000);
+      // console.log(payload);
+      // await timeout(1000);
     },
     validationSchema: yupAdd,
   });

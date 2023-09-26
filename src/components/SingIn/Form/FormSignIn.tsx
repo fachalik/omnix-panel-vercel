@@ -20,7 +20,7 @@ export default function FormSignIn() {
     console.log('Failed:', errorInfo);
   };
 
-  const formik = useFormSignIn();
+  const formik: any = useFormSignIn();
 
   return (
     <main style={{ width: '100%' }}>
@@ -42,8 +42,7 @@ export default function FormSignIn() {
             Boolean(formik.touched.email && formik.errors.email) ? 'error' : ''
           }
           hasFeedback
-          // help={formik.touched.email ? formik.errors.email : ''}
-          // rules={[{ required: true, message: 'Please input your email!' }]}
+          help={formik.touched.email ? formik.errors.email : ''}
         >
           <Input
             status={
@@ -69,9 +68,7 @@ export default function FormSignIn() {
               : ''
           }
           hasFeedback
-          // help={formik.touched.password ? formik.errors.password : ''}
-          // help={}
-          // rules={[{ required: true, message: 'Please input your password!' }]}
+          help={formik.touched.password ? formik.errors.password : ''}
         >
           <a
             type="link"
