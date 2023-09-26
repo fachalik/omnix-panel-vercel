@@ -2,7 +2,7 @@
 
 import { GoogleOutlined } from '@ant-design/icons';
 import Image from 'next/image';
-import { Row, Col, Card, Space, Button, Divider } from 'antd';
+import { Row, Col, Card, Button, Divider } from 'antd';
 
 import FormSignIn from '@/components/SingIn/Form/FormSignIn';
 import thirdPartyLogin from '@/lib/third-party-login';
@@ -14,7 +14,10 @@ import AlertContext from '@/hooks/AlertContext';
 import useCheckIsNotLogin from '@/hooks/useCheckIsNotLogin';
 import Loading from '@/components/Loading';
 
+import { useRouter } from 'next/navigation';
+
 export default function Home() {
+  const { push } = useRouter();
   const isMobile = useIsMobile();
 
   const { isLoading, isNotLogin } = useCheckIsNotLogin();
@@ -297,7 +300,7 @@ export default function Home() {
                       }}
                     >
                       <p style={{ marginRight: '1em' }}>Belum memiliki akun?</p>
-                      <Button type="primary" href="/sign-up">
+                      <Button type="primary" onClick={() => push('/sign-up')}>
                         Buat Akun
                       </Button>
                     </div>

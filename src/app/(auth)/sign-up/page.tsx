@@ -2,7 +2,7 @@
 import React from 'react';
 
 import { GoogleOutlined, UserOutlined, BankOutlined } from '@ant-design/icons';
-import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { Button, Divider, Card, Row, Col } from 'antd';
 
 import FormSignUpUser from '@/components/SingUp/Form/FormSignUpUser';
@@ -11,6 +11,7 @@ import thirdPartyLogin from '@/lib/third-party-login';
 import { palette } from '@/theme/themeConfig';
 
 export default function Home() {
+  const { push } = useRouter();
   const [user, setUser] = React.useState<string>('user');
   const googleLogin = async () => {
     const req: any = await thirdPartyLogin(
@@ -124,7 +125,8 @@ export default function Home() {
             fontSize: 12,
             textDecoration: 'underline',
           }}
-          href="/"
+          onClick={() => push('/')}
+          // href="/"
         >
           Sign In
         </Button>

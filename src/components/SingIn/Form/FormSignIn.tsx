@@ -3,6 +3,7 @@
 import React from 'react';
 import { Button, Form, Input } from 'antd';
 import useFormSignIn from '../Hooks/useFormSignIn';
+import { useRouter } from 'next/navigation';
 
 type FieldType = {
   email?: string;
@@ -10,6 +11,7 @@ type FieldType = {
 };
 
 export default function FormSignIn() {
+  const { push } = useRouter();
   const onFinish = (values: any) => {
     console.log('Success:', values);
   };
@@ -80,7 +82,7 @@ export default function FormSignIn() {
               textDecoration: 'underline',
               marginBottom: 10,
             }}
-            href="/forget-password"
+            onClick={() => push('/forget-password')}
           >
             Forgot password ?
           </a>

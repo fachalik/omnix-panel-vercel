@@ -1,15 +1,12 @@
 'use client';
-import styles from './page.module.css';
-import { GoogleOutlined } from '@ant-design/icons';
-import Image from 'next/image';
-import { Row, Col, Card, Button, Divider } from 'antd';
+
+import { Button } from 'antd';
+import { useRouter } from 'next/navigation';
 
 import FormForgetPassword from '@/components/ForgetPassword/Form/FormForgetPassword';
-import thirdPartyLogin from '@/lib/third-party-login';
-import useIsMobile from '@/hooks/useIsMobile';
-import { palette } from '@/theme/themeConfig';
 
-export default function page() {
+export default function Page() {
+  const { push } = useRouter();
   return (
     <div
       style={{
@@ -46,7 +43,7 @@ export default function page() {
             fontSize: 12,
             textDecoration: 'underline',
           }}
-          href="/"
+          onClick={() => push('/')}
         >
           Kembali ke halamanm login
         </Button>
