@@ -16,7 +16,7 @@ const AlertContext = () => {
     if (hitAlert) {
       if (alert.hit) {
         messageApi.open({
-          type: alert.type,
+          type: alert.type === 'error' ? 'error' : 'success',
           content: alert.status,
         });
       }
