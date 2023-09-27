@@ -17,9 +17,13 @@ export default function Home() {
   const code = searchParams.get('code');
 
   const getToken = async () => {
+    const redirect =
+      process.env.NODE_ENV === 'development'
+        ? 'http://localhost:3000/google'
+        : 'https://omnix-panel-vercel.vercel.app/google';
     const userInfo = await axios
       .post(
-        `https://oauth2.googleapis.com/token?code=${code}&client_id=${process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}&client_secret=${process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET}&redirect_uri=http://localhost:3000/google&grant_type=authorization_code`,
+        `https://oauth2.googleapis.com/token?code=${code}&client_id=${process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}&client_secret=${process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET}&redirect_uri=${redirect}&grant_type=authorization_code`,
         {
           headers: {},
         }

@@ -1,8 +1,9 @@
 'use client';
 import React from 'react';
-import { Card, Row, Col } from 'antd';
+import { Card, Row, Col, Divider, Button } from 'antd';
 import { useActivatedProduct } from '@/store';
 import { formatRupiah } from '@/utils/utilitys';
+import FormDetailOrder from './Form/FormDetailOrder';
 
 function Step2() {
   const { selectedData, incCurrentState, decCurrentState } =
@@ -118,10 +119,90 @@ function Step2() {
             </Row>
           </Card>
           <div style={{ marginTop: '1.5em' }}>
-            <p>asd</p>
+            <Row>
+              <Col
+                span={12}
+                style={{ paddingLeft: '10px', paddingRight: '10px' }}
+              >
+                <p style={{ fontSize: 14, fontWeight: 400 }}>Subtotal</p>
+              </Col>
+              <Col
+                span={12}
+                style={{
+                  paddingLeft: '10px',
+                  paddingRight: '10px',
+                  textAlign: 'end',
+                }}
+              >
+                <p style={{ fontSize: 14, fontWeight: 700 }}>
+                  {formatRupiah(selectedData.package_price.toString(), 'Rp.')}
+                </p>
+              </Col>
+            </Row>
+            <Row>
+              <Col
+                span={12}
+                style={{ paddingLeft: '10px', paddingRight: '10px' }}
+              >
+                <p
+                  style={{ fontSize: 14, fontWeight: 400 }}
+                >{`Tax(${selectedData.package_tax})%`}</p>
+              </Col>
+              <Col
+                span={12}
+                style={{
+                  paddingLeft: '10px',
+                  paddingRight: '10px',
+                  textAlign: 'end',
+                }}
+              >
+                <p style={{ fontSize: 14, fontWeight: 700 }}>
+                  {formatRupiah(
+                    ((selectedData.package_price * 0) / 100).toString(),
+                    'Rp.'
+                  )}
+                </p>
+              </Col>
+            </Row>
+            <Divider />
+            <Row>
+              <Col
+                span={12}
+                style={{ paddingLeft: '10px', paddingRight: '10px' }}
+              >
+                <p style={{ fontSize: 14, fontWeight: 400 }}>Total</p>
+              </Col>
+              <Col
+                span={12}
+                style={{
+                  paddingLeft: '10px',
+                  paddingRight: '10px',
+                  textAlign: 'end',
+                }}
+              >
+                <p style={{ fontSize: 14, fontWeight: 700 }}>
+                  {formatRupiah(
+                    (
+                      (selectedData.package_price * 0) / 100 +
+                      selectedData.package_price
+                    ).toString(),
+                    'Rp.'
+                  )}
+                </p>
+              </Col>
+            </Row>
+            <Divider />
+            <FormDetailOrder />
           </div>
         </div>
       </Card>
+      <Button
+        onClick={() => decCurrentState()}
+        style={{ marginTop: '1.5em' }}
+        block
+      >
+        Back
+      </Button>
     </div>
   );
 }
