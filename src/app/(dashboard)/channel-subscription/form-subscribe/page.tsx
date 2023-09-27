@@ -1,35 +1,35 @@
-import React from "react";
-import { Divider, Button, Steps, Input } from "antd";
-import Image from "next/image";
+import React from 'react';
+import { Divider, Button, Steps, Input } from 'antd';
+import Image from 'next/image';
 
-function page() {
+export default function Page() {
   return (
     <div>
       <div
         style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
           gap: 10,
           marginBottom: 10,
         }}
       >
         <div
           style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
             gap: 10,
             marginBottom: 10,
           }}
         >
           <Image
-            src={"/icons/whatsapp.svg"}
+            src={'/icons/whatsapp.svg'}
             alt="omnix-whatsapp"
             width={30}
             height={30}
           />
-          <div style={{ fontSize: 20, fontWeight: "bold" }}>Whatsapp</div>
+          <div style={{ fontSize: 20, fontWeight: 'bold' }}>Whatsapp</div>
           <div>by Omnix</div>
         </div>
       </div>
@@ -41,13 +41,13 @@ function page() {
           direction="vertical"
           items={[
             {
-              title: "Step 1",
+              title: 'Step 1',
               description: (
                 <div>
                   <p
                     style={{
                       fontSize: 16,
-                      fontWeight: "bold",
+                      fontWeight: 'bold',
                       marginBottom: 20,
                     }}
                   >
@@ -61,13 +61,13 @@ function page() {
               ),
             },
             {
-              title: "Step 2",
+              title: 'Step 2',
               description: (
                 <div>
                   <p
                     style={{
                       fontSize: 16,
-                      fontWeight: "bold",
+                      fontWeight: 'bold',
                       marginBottom: 20,
                     }}
                   >
@@ -79,7 +79,10 @@ function page() {
                     mudah Anda kenali dan rujuk.
                   </p>
                   <div>
-                    <Input placeholder="Whatsapp Official" style={{width: 400, marginBottom: 10}} />
+                    <Input
+                      placeholder="Whatsapp Official"
+                      style={{ width: 400, marginBottom: 10 }}
+                    />
                   </div>
                   <Button>Click here to continue</Button>
                 </div>
@@ -91,5 +94,3 @@ function page() {
     </div>
   );
 }
-
-export default page;
