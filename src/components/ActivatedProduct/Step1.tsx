@@ -69,7 +69,6 @@ function Step1() {
                   style={{
                     display: 'flex',
                     flexDirection: 'column',
-                    marginLeft: 5,
                   }}
                 >
                   <div
@@ -98,7 +97,6 @@ function Step1() {
                   style={{
                     display: 'flex',
                     flexDirection: 'column',
-                    marginLeft: 5,
                   }}
                 >
                   <div
@@ -120,12 +118,11 @@ function Step1() {
                   </div>
                 </div>
               </Col>
-              <Col xs={24} sm={24} md={24} lg={2} xl={2}>
+              <Col xs={24} sm={24} md={24} lg={3} xl={3}>
                 <div
                   style={{
                     display: 'flex',
                     flexDirection: 'column',
-                    marginLeft: 5,
                   }}
                 >
                   <div
@@ -152,7 +149,6 @@ function Step1() {
                   style={{
                     display: 'flex',
                     flexDirection: 'column',
-                    marginLeft: 5,
                   }}
                 >
                   <div
@@ -179,7 +175,6 @@ function Step1() {
                   style={{
                     display: 'flex',
                     flexDirection: 'column',
-                    marginLeft: 5,
                   }}
                 >
                   <div
@@ -206,7 +201,6 @@ function Step1() {
                   style={{
                     display: 'flex',
                     flexDirection: 'column',
-                    marginLeft: 5,
                   }}
                 >
                   <div
@@ -229,14 +223,7 @@ function Step1() {
                 </div>
               </Col>
 
-              <Col
-                style={{ marginLeft: '2em' }}
-                xs={24}
-                sm={24}
-                md={24}
-                lg={3}
-                xl={3}
-              >
+              <Col xs={24} sm={24} md={24} lg={3} xl={3}>
                 <Button
                   block
                   type="default"

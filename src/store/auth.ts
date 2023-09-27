@@ -8,18 +8,15 @@ import { setLogin, removeLogin } from '@/utils/sessions';
 
 import { useAlertStore } from './alert';
 
-import { UserType } from '@/models/authModels';
+import { User, UserType } from '@/models/authModels';
 
 import { logout } from '@/service/auth';
 // import { useRouter } from 'next/navigation';
 
-interface StoreAuth {
-  token: string | null;
-  User?: UserType | null;
-}
-
 interface IStoreAuth {
-  auth: StoreAuth;
+  token: string | null;
+  refreshToken: string | null;
+  user: User | null;
 
   login: (payload: { email: string; password: string }) => void;
 
@@ -29,10 +26,9 @@ interface IStoreAuth {
 }
 
 const initialState = {
-  auth: {
-    token: null,
-    User: null,
-  },
+  token: null,
+  refreshToken: null,
+  user: null,
 };
 
 export const useAuthStore = create<IStoreAuth>()(
@@ -47,17 +43,29 @@ export const useAuthStore = create<IStoreAuth>()(
           console.log('RESPONSE>>>>', response);
           if (response.user.status.name.toLowerCase() !== 'inactive') {
             console.log('active');
+            // set(
+            //   (state: any) => ({
+            //     auth: {
+            //       token: response.token,
+            //       User: response,
+            //       error: '',
+            //     },
+            //   }),
+            //   false
+            // );
             set(
               (state: any) => ({
-                auth: {
-                  token: response.token,
-                  User: response,
-                  error: '',
-                },
+                token: response.token,
+                refreshToken: response.refreshToken,
+                user: response.user,
               }),
               false
             );
-            setLogin(response);
+            setLogin({
+              token: response.token,
+              refreshToken: response.refreshToken,
+              user: response.user,
+            });
             const payload = await {
               status: `welcome back ${response.user.firstName}`,
               hit: true,
@@ -93,16 +101,17 @@ export const useAuthStore = create<IStoreAuth>()(
         setAuth(payload: any) {
           set(
             (state: any) => ({
-              auth: {
-                token: payload.token,
-                User: payload,
-                error: '',
-              },
+              token: payload.token,
+              refreshToken: payload.refreshToken,
+              user: payload.user,
             }),
             false
           );
-          setLogin(payload);
-          localStorage.clear();
+          setLogin({
+            token: payload.token,
+            refreshToken: payload.refreshToken,
+            user: payload.user,
+          });
         },
       }),
       {

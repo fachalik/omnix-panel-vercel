@@ -12,12 +12,12 @@ import { useAuthStore } from '@/store';
 
 export default function Page() {
   const { push } = useRouter();
-  const { auth } = useAuthStore((state) => state);
+  const { user } = useAuthStore((state) => state);
   return (
     <div>
       <div style={{ display: 'flex', alignItems: 'center', marginBottom: 20 }}>
         <span style={{ fontSize: 20, fontWeight: 'bold' }}>
-          {`Welcome to Omnix, ${auth.User?.user.firstName}`}
+          {`Welcome to Omnix, ${user?.firstName}`}
         </span>
         <div style={{ marginLeft: 'auto' }}>
           <Button type="primary" ghost>

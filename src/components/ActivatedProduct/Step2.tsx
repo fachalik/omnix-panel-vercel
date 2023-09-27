@@ -37,7 +37,6 @@ function Step2() {
                   style={{
                     display: 'flex',
                     flexDirection: 'column',
-                    marginLeft: 5,
                   }}
                 >
                   <div
@@ -66,7 +65,6 @@ function Step2() {
                   style={{
                     display: 'flex',
                     flexDirection: 'column',
-                    marginLeft: 5,
                   }}
                 >
                   <div
@@ -94,7 +92,6 @@ function Step2() {
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'end',
-                    marginLeft: 5,
                   }}
                 >
                   <div

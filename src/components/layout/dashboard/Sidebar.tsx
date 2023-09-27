@@ -25,15 +25,12 @@ export default function Sidebar() {
     other: { sidebarCollapse },
   } = useOtherStore((state) => state);
 
-  const {
-    auth: { User },
-    logoutAuth,
-  } = useAuthStore((state) => state);
+  const { user, logoutAuth } = useAuthStore((state) => state);
 
   const isMobile = useIsMobile();
 
   const route = () => {
-    switch (User?.user.role.name.toLocaleLowerCase()) {
+    switch (user?.role.name.toLocaleLowerCase()) {
       case 'admin':
         return adminRoutes;
 
@@ -169,7 +166,7 @@ export default function Sidebar() {
         defaultOpenKeys={[pathname]}
         selectedKeys={[pathname]}
         items={
-          User?.user.role.name.toLocaleLowerCase() === 'admin'
+          user?.role.name.toLocaleLowerCase() === 'admin'
             ? adminRoutes
             : userRoutes
         }
@@ -191,7 +188,7 @@ export default function Sidebar() {
             }}
             size={'large'}
           >
-            {User?.user.firstName.charAt(0)}
+            {user?.firstName.charAt(0)}
           </Avatar>
         </div>
       </Dropdown>

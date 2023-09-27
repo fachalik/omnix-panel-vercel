@@ -6,9 +6,7 @@ import { timeout } from '@/utils/utilitys';
 import { useAuthStore } from '@/store';
 
 const useCheckIsLogin = () => {
-  const {
-    auth: { User },
-  } = useAuthStore((state) => state);
+  const { user } = useAuthStore((state) => state);
   const { push } = useRouter();
 
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
@@ -16,7 +14,7 @@ const useCheckIsLogin = () => {
 
   React.useEffect(() => {
     setIsLoading(true);
-    if (User === null) {
+    if (user === null) {
       push('/');
       // return;
     } else {
@@ -27,7 +25,7 @@ const useCheckIsLogin = () => {
 
     setIsLogin(true);
     setIsLoading(false);
-  }, [User, push]);
+  }, [user, push]);
 
   return { isLoading, isLogin };
 };

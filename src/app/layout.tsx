@@ -4,6 +4,7 @@ import { Plus_Jakarta_Sans } from 'next/font/google';
 import TanstackQueryProvider from '@/lib/TanstackQueryProvider';
 import { StyledComponentsRegistry, AntdProvider } from '@/lib/AntdRegistry';
 import GoogleProvider from '@/lib/GoogleProvider';
+import PersistAdaptor from '@/store/adapter';
 
 const jakartaSans = Plus_Jakarta_Sans({
   subsets: ['latin'],
@@ -23,6 +24,7 @@ export default async function RootLayout({
   return (
     <html lang="id">
       <body className={jakartaSans.className}>
+        <PersistAdaptor />
         <GoogleProvider>
           <TanstackQueryProvider>
             <StyledComponentsRegistry>
