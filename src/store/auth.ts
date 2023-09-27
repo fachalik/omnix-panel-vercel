@@ -101,6 +101,7 @@ export const useAuthStore = create<IStoreAuth>()(
             }),
             false
           );
+          setLogin(payload);
           localStorage.clear();
         },
       }),
