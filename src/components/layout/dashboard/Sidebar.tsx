@@ -168,30 +168,22 @@ export default function Sidebar() {
         items={(user?.role.name.toLocaleLowerCase() === 'admin'
           ? adminRoutes
           : userRoutes
-        ).map((val, idx) => {
+        ).map((val: any, idx: number) => {
           return {
             key: val.key,
             icon: (
               <Tooltip placement="left">
                 <Image
                   src={val.icon}
+                  width={18}
+                  height={18}
                   style={{
                     width: '18px',
                     height: '18px',
                     backgroundColor: val[idx] ? '#eeeeee' : '',
                   }}
+                  alt={`${val.key}-${idx}`}
                 />
-                {/* <img
-                  src={`${window.ASSET_URL}/images/${
-                    val.name + '_white'
-                  }.svg?r=${new Date().getMilliseconds()}`}
-                  style={{
-                    width: '18px',
-                    height: '18px',
-                    backgroundColor: val[idx] ? '#eeeeee' : '',
-                  }}
-                  alt="Menu"
-                /> */}
               </Tooltip>
             ),
             label: val.name,
