@@ -5,15 +5,10 @@ import Image from 'next/image';
 
 import { adminRoutes, userRoutes } from '@/routes';
 
-import {
-  UploadOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
-  LogoutOutlined,
-  ExclamationCircleOutlined,
-} from '@ant-design/icons';
-import { Layout, Menu, Avatar, Dropdown, Modal } from 'antd';
+import { LogoutOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
+import { Layout, Menu, Avatar, Dropdown, Modal, Badge, Tooltip } from 'antd';
 import type { MenuProps } from 'antd';
+import { useRouter, usePathname } from 'next/navigation';
 
 import { palette } from '@/theme/themeConfig';
 import { useOtherStore, useAuthStore } from '@/store';
@@ -22,6 +17,9 @@ import useIsMobile from '@/hooks/useIsMobile';
 //**--------------------------------------------------------------
 
 export default function Sidebar() {
+  const pathname = usePathname();
+
+  const { push } = useRouter();
   const { Sider } = Layout;
   const {
     other: { sidebarCollapse },
@@ -110,11 +108,20 @@ export default function Sidebar() {
       collapsedWidth={isMobile ? 0 : '4rem'}
       breakpoint="lg"
       style={{
+        overflow: 'auto',
         height: '100vh',
-        overflow: 'hidden',
+        position: 'fixed',
+        left: 0,
+        top: 0,
+        bottom: 0,
         background: palette.primary.dark,
-        position: 'relative',
       }}
+      // style={{
+      //   height: '100vh',
+      //   overflow: 'hidden',
+      //   background: palette.primary.dark,
+      //   position: 'relative',
+      // }}
       theme="dark"
       className="sidebar"
     >
@@ -155,7 +162,12 @@ export default function Sidebar() {
         }}
         theme="dark"
         mode="inline"
-        defaultSelectedKeys={['1']}
+        onClick={(e) => {
+          push(e.key);
+        }}
+        defaultSelectedKeys={[pathname]}
+        defaultOpenKeys={[pathname]}
+        selectedKeys={[pathname]}
         items={
           User?.user.role.name.toLocaleLowerCase() === 'admin'
             ? adminRoutes

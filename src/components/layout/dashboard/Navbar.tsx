@@ -19,8 +19,19 @@ export default function Navbar() {
   } = useOtherStore((state) => state);
 
   return (
-    <Layout.Header style={{ padding: 0, background: colorBgContainer }}>
-      <Button
+    <Layout.Header
+      style={{
+        padding: 0,
+        background: colorBgContainer,
+        zIndex: 99,
+        marginLeft: 65,
+        position: 'fixed',
+        left: 0,
+        top: 0,
+        right: 0,
+      }}
+    >
+      {/* <Button
         type="text"
         icon={sidebarCollapse ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
         onClick={() => setSidebarCollapse()}
@@ -29,7 +40,7 @@ export default function Navbar() {
           width: 64,
           height: 64,
         }}
-      />
+      /> */}
     </Layout.Header>
   );
 }

@@ -4,6 +4,7 @@ import React from 'react';
 import { useRouter } from 'next/navigation';
 import { timeout } from '@/utils/utilitys';
 import { useAuthStore } from '@/store';
+import { adminRoutes, userRoutes } from '@/routes';
 
 const useCheckIsNotLogin = () => {
   const {
@@ -17,7 +18,11 @@ const useCheckIsNotLogin = () => {
   React.useEffect(() => {
     setIsLoading(true);
     if (User !== null) {
-      push('/dashboard');
+      if (User?.user.role.name.toLowerCase() === 'user') {
+        push(userRoutes[0].key);
+      } else {
+        push(adminRoutes[0].key);
+      }
       setIsNotLogin(false);
       // return;
     } else {

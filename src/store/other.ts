@@ -13,7 +13,7 @@ interface IStoreOther {
 
 const initialState = {
   other: {
-    sidebarCollapse: false,
+    sidebarCollapse: true,
   },
 };
 

@@ -14,10 +14,12 @@ function Content({ children }: IContent) {
   return (
     <Layout.Content
       style={{
+        marginTop: 100,
         margin: '24px 16px',
         padding: 24,
         minHeight: 280,
         background: colorBgContainer,
+        overflow: 'auto',
       }}
     >
       {children}

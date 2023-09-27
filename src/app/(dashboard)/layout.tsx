@@ -24,12 +24,17 @@ export default function DashboardLayout({ children }: IDashboardLayout) {
 
   if (!isLoading && isLogin) {
     return (
-      <div style={{ display: 'flex', minHeight: '100%' }}>
-        <Layout>
+      <div style={{ display: 'flex', minHeight: '100%', overflow: 'hidden' }}>
+        <Layout hasSider style={{ overflow: 'hidden' }}>
           <Sidebar />
-          <Layout>
+          <Layout style={{ overflow: 'hidden', marginLeft: 60 }}>
             <Navbar />
-            <Content>{children}</Content>
+            <div
+              className="site-layout"
+              style={{ overflow: 'hidden', marginTop: 60 }}
+            >
+              <Content>{children}</Content>
+            </div>
           </Layout>
         </Layout>
       </div>

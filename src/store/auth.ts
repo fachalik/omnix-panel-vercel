@@ -3,6 +3,8 @@
 import { create } from 'zustand';
 import { devtools, persist } from 'zustand/middleware';
 import { postLogin } from '@/service/auth';
+import { adminRoutes, userRoutes } from '@/routes';
+import { setLogin, removeLogin } from '@/utils/sessions';
 
 import { useAlertStore } from './alert';
 
@@ -55,6 +57,7 @@ export const useAuthStore = create<IStoreAuth>()(
               }),
               false
             );
+            setLogin(response);
             const payload = await {
               status: `welcome back ${response.user.firstName}`,
               hit: true,
@@ -63,7 +66,11 @@ export const useAuthStore = create<IStoreAuth>()(
             await useAlertStore.getState().setAlert(payload);
 
             if (typeof window !== 'undefined') {
-              window.location.replace('/dashboard');
+              if (response.user.role.name.toLocaleLowerCase() === 'user') {
+                window.location.replace(userRoutes[0].key);
+              } else {
+                window.location.replace(adminRoutes[0].key);
+              }
             }
           } else {
             console.log('inactive');
@@ -78,6 +85,7 @@ export const useAuthStore = create<IStoreAuth>()(
 
         logoutAuth() {
           logout();
+          removeLogin();
           set(() => initialState, false, 'omnix-reset');
           localStorage.clear();
         },
