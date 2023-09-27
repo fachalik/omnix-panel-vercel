@@ -6,6 +6,7 @@ import { getLogin } from '@/utils/sessions';
 import Loading from '../Loading';
 import moment from 'moment';
 import { formatRupiah } from '@/utils/utilitys';
+// import { FormDetailOrder } from './Form/FormDetailOrder';
 
 export default function DetailOrder({ id_product }: { id_product: string }) {
   const { data, isLoading, isSuccess } = useGetDetailOrder({
@@ -287,6 +288,7 @@ export default function DetailOrder({ id_product }: { id_product: string }) {
             </div>
           </Col>
         </Row>
+    
       </div>
     );
   }

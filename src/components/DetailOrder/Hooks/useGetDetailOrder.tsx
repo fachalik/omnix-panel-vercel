@@ -1,6 +1,6 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { getDetailOrder } from '@/service/product';
+import { getDetailPackage } from '@/service/product';
 
 export type GetPackageQueryParams = {
   token: string;
@@ -14,7 +14,7 @@ const QUERY_KEY = ['LIST_EXPLORE_ORDER_DETAIL'];
 const fetchOrderDetail = async (
   params: GetPackageQueryParams
 ): Promise<any> => {
-  const data = await getDetailOrder(params.token, params.id);
+  const data = await getDetailPackage(params.token, params.id);
   return data;
 };
 
