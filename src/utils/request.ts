@@ -16,6 +16,9 @@ const getToken = () => {
 };
 
 const token = getToken().token;
+const refreshToken = getToken().refreshToken;
+
+console.log('TOKEN', token);
 
 http.defaults.headers.common.Accept = 'application/json';
 if (token) {
@@ -38,7 +41,7 @@ http.interceptors.response.use(
         {},
         {
           headers: {
-            Authorization: `Bearer ${getLogin().refreshToken}`,
+            Authorization: `Bearer ${refreshToken}`,
           },
         }
       )
@@ -48,7 +51,6 @@ http.interceptors.response.use(
         setLogin({
           refreshToken: values.refreshToken,
           token: values.token,
-          tokenExpires: values.tokenExpires,
           user: getLogin().user,
         });
         return http(config);
@@ -58,17 +60,5 @@ http.interceptors.response.use(
       });
   }
 );
-
-function refreshToken() {
-  return http.post(
-    '/api/v1/auth/refresh',
-    {},
-    {
-      headers: {
-        Authorization: `Bearer ${getLogin().refreshToken}`,
-      },
-    }
-  );
-}
 
 export default http;

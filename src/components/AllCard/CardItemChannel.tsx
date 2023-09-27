@@ -6,13 +6,6 @@ import moment from 'moment';
 import { useRouter } from 'next/navigation';
 import { EllipsisOutlined } from '@ant-design/icons';
 
-// icon: '/icons/whatsapp.svg',
-// package_name: 'Whatsapp',
-// package_type: 'Platform',
-// channelName: 'OMNIX Official',
-// totalAccount: 2,
-// createdAt: new Date(),
-
 interface ICardItem {
   icon: string;
   package_name: string;
@@ -29,14 +22,7 @@ interface IItem {
 export default function CardItemChannel(props: IItem) {
   const { push } = useRouter();
   const { item } = props;
-  const {
-    icon,
-    package_name,
-    package_type,
-    channelName,
-    totalAccount,
-    createdAt,
-  } = item;
+  const { icon, package_name, package_type, totalAccount, createdAt } = item;
   return (
     <Card
       bodyStyle={{
@@ -169,7 +155,7 @@ export default function CardItemChannel(props: IItem) {
         </Col>
         <Col xs={24} sm={24} md={24} lg={2} xl={2}>
           <Button
-            // onClick={() => push(`/product-activation/${id}`)}
+            onClick={() => push(`/channel-subscription/1`)}
             block
             icon={<EllipsisOutlined style={{ fontSize: 20 }} />}
           ></Button>

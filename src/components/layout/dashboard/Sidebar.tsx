@@ -165,11 +165,38 @@ export default function Sidebar() {
         defaultSelectedKeys={[pathname]}
         defaultOpenKeys={[pathname]}
         selectedKeys={[pathname]}
-        items={
-          user?.role.name.toLocaleLowerCase() === 'admin'
-            ? adminRoutes
-            : userRoutes
-        }
+        items={(user?.role.name.toLocaleLowerCase() === 'admin'
+          ? adminRoutes
+          : userRoutes
+        ).map((val, idx) => {
+          return {
+            key: val.key,
+            icon: (
+              <Tooltip placement="left">
+                <Image
+                  src={val.icon}
+                  style={{
+                    width: '18px',
+                    height: '18px',
+                    backgroundColor: val[idx] ? '#eeeeee' : '',
+                  }}
+                />
+                {/* <img
+                  src={`${window.ASSET_URL}/images/${
+                    val.name + '_white'
+                  }.svg?r=${new Date().getMilliseconds()}`}
+                  style={{
+                    width: '18px',
+                    height: '18px',
+                    backgroundColor: val[idx] ? '#eeeeee' : '',
+                  }}
+                  alt="Menu"
+                /> */}
+              </Tooltip>
+            ),
+            label: val.name,
+          };
+        })}
       />
       <Dropdown menu={{ items }} placement="topRight" trigger={['click']}>
         <div

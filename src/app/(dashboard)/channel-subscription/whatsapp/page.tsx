@@ -1,10 +1,26 @@
+'use client';
 import React from 'react';
-import { Divider, Button } from 'antd';
+
+import { Divider, Button, Breadcrumb } from 'antd';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 export default function Page() {
+  const { push } = useRouter();
   return (
     <div>
+      <Breadcrumb
+        separator=">"
+        style={{ marginBottom: '1em' }}
+        items={[
+          {
+            title: 'Channel Subscription',
+          },
+          {
+            title: 'Whatsapp',
+          },
+        ]}
+      />
       <div
         style={{
           display: 'flex',
@@ -32,7 +48,12 @@ export default function Page() {
           <div style={{ fontSize: 20, fontWeight: 'bold' }}>Whatsapp</div>
           <div>by Omnix</div>
         </div>
-        <Button type="primary">Subscription Whatsapp</Button>
+        <Button
+          type="primary"
+          onClick={() => push('/channel-subscription/whatsapp/subscribe')}
+        >
+          Subscription Whatsapp
+        </Button>
       </div>
       <div>
         Integrate your Whatsapp business account and manage all your Whatsapp

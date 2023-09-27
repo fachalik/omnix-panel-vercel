@@ -1,7 +1,6 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import Cookies from 'js-cookie';
 import { encode, decode } from 'utils/encrypt';
-import { UserType } from '@/models/authModels';
 
 const LOGIN_STORAGE = 'lgstr';
 

@@ -7,7 +7,13 @@ export default function thirdPartyLogin(href: string): Promise<any> | null {
   return new Promise<any>((res, rej) => {
     function listen(e: MessageEvent<any>) {
       const { origin, data } = e;
-      if (['http://localhost:3000/google'].includes(origin) === false) return;
+      if (
+        [
+          'http://localhost:3000',
+          'https://omnix-panel-vercel.vercel.app',
+        ].includes(origin) === false
+      )
+        return;
 
       if (typeof data != 'string') return;
       const escaped = (() => {

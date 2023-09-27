@@ -1,24 +1,24 @@
 'use client';
-import {
-  UploadOutlined,
-  VideoCameraOutlined,
-  HomeOutlined,
-} from '@ant-design/icons';
+
+import Home from '@/assets/icons/Home.svg';
+import Channel from '@/assets/icons/Channel.svg';
+import Planet from '@/assets/icons/Planet.svg';
+import Windows from '@/assets/icons/Windows.svg';
 
 const userRoutes: any = [
   {
     key: '/home',
-    icon: <HomeOutlined />,
+    icon: Home,
     label: 'Home',
   },
   {
     key: '/channel-subscription',
-    icon: <VideoCameraOutlined />,
+    icon: Channel,
     label: 'Channel Subscription',
   },
   {
     key: '/product-activation',
-    icon: <UploadOutlined />,
+    icon: Planet,
     label: 'Product Activation',
   },
 ];
