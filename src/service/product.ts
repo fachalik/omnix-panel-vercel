@@ -78,7 +78,7 @@ export const getOrder = (
     }
   });
 
-export const getDetailOrder = (token: string, id: string) =>
+export const getDetailPackage = (token: string, id: string) =>
   new Promise<any>(async (resolve, reject) => {
     try {
       const respon = await http.get(`/api/v1/packages/${id}`, {
@@ -116,6 +116,44 @@ export const paymentMidtrans = (payload: any) =>
   new Promise<any>(async (resolve, reject) => {
     try {
       const respon = await http.post(`/api/v1/payment/midtrans`, payload);
+      if (respon.data) {
+        resolve(respon.data);
+      }
+    } catch (err: any) {
+      const message: string = err.response
+        ? `${err.response.data.message}`
+        : 'Oops, something wrong with our server, please try again later.';
+      reject(message);
+    }
+  });
+
+export const getDetailProduct = (token: string, id: string) =>
+  new Promise<any>(async (resolve, reject) => {
+    try {
+      const respon = await http.get(`/api/v1/product/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (respon.data) {
+        resolve(respon.data);
+      }
+    } catch (err: any) {
+      const message: string = err.response
+        ? `${err.response.data.message}`
+        : 'Oops, something wrong with our server, please try again later.';
+      reject(message);
+    }
+  });
+
+export const getDetailOrder = (token: string, id: string) =>
+  new Promise<any>(async (resolve, reject) => {
+    try {
+      const respon = await http.get(`/api/v1/product/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       if (respon.data) {
         resolve(respon.data);
       }

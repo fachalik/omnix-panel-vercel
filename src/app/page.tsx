@@ -24,9 +24,16 @@ export default function Home() {
 
   const { isLoading, isNotLogin } = useCheckIsNotLogin();
 
+  // console.log('env', process.env.NODE_ENV);
+
+  const redirect =
+    process.env.NODE_ENV === 'development'
+      ? 'http://localhost:3000/google'
+      : 'https://omnix-panel-vercel.vercel.app/google';
+
   const googleLogin = async () => {
     thirdPartyLogin(
-      `https://accounts.google.com/o/oauth2/v2/auth/oauthchooseaccount?response_type=code&client_id=${process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}&scope=openid%20email%20profile&redirect_uri=http://localhost:3000/google&service=lso&o2v=2&theme=glif&flowName=GeneralOAuthFlow`
+      `https://accounts.google.com/o/oauth2/v2/auth/oauthchooseaccount?response_type=code&client_id=${process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}&scope=openid%20email%20profile&redirect_uri=${redirect}&service=lso&o2v=2&theme=glif&flowName=GeneralOAuthFlow`
     );
     // push(
     //   `https://accounts.google.com/o/oauth2/v2/auth/oauthchooseaccount?response_type=code&client_id=${process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}&scope=openid%20email%20profile&redirect_uri=http://localhost:3000/google&service=lso&o2v=2&theme=glif&flowName=GeneralOAuthFlow`
