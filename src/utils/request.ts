@@ -10,12 +10,12 @@ const http = axios.create({
 const getToken = () => {
   const auth = getLogin();
   if (auth) {
-    return auth.token;
+    return auth;
   }
   return false;
 };
 
-const token = getToken();
+const token = getToken().token;
 
 http.defaults.headers.common.Accept = 'application/json';
 if (token) {
