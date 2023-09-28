@@ -30,7 +30,7 @@ export default function Page() {
       width: '10%',
       align: 'center',
       dataIndex: 'action',
-      render: (text, record) => (
+      render: (text: any, record: any) => (
         <div
           style={{
             display: 'flex',
