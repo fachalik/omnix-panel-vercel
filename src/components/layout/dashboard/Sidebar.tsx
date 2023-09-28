@@ -11,7 +11,7 @@ import type { MenuProps } from 'antd';
 import { useRouter, usePathname } from 'next/navigation';
 
 import { palette } from '@/theme/themeConfig';
-import { useOtherStore, useAuthStore } from '@/store';
+import { useOtherStore, useAuthStore, useModalLogoutstore } from '@/store';
 import useIsMobile from '@/hooks/useIsMobile';
 
 //**--------------------------------------------------------------
@@ -25,7 +25,8 @@ export default function Sidebar() {
     other: { sidebarCollapse },
   } = useOtherStore((state) => state);
 
-  const { user, logoutAuth } = useAuthStore((state) => state);
+  const { user, logoutAuth, setIsLogout } = useAuthStore((state) => state);
+  const { reset: resetModalLogout } = useModalLogoutstore((state) => state);
 
   const isMobile = useIsMobile();
 
@@ -77,7 +78,9 @@ export default function Sidebar() {
                 },
               },
               onOk: async () => {
+                await setIsLogout();
                 await logoutAuth();
+                await resetModalLogout
                 // logout().then((res) => {
                 //   logoutAuth();
                 // });

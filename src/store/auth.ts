@@ -11,24 +11,27 @@ import { useAlertStore } from './alert';
 import { User, UserType } from '@/models/authModels';
 
 import { logout } from '@/service/auth';
-// import { useRouter } from 'next/navigation';
 
 interface IStoreAuth {
   token: string | null;
   refreshToken: string | null;
   user: User | null;
+  isLogout: boolean;
 
   login: (payload: { email: string; password: string }) => void;
 
   setAuth: (payload: any) => void;
 
   logoutAuth: () => void;
+
+  setIsLogout: () => void;
 }
 
 const initialState = {
   token: null,
   refreshToken: null,
   user: null,
+  isLogout: false,
 };
 
 export const useAuthStore = create<IStoreAuth>()(
@@ -88,11 +91,22 @@ export const useAuthStore = create<IStoreAuth>()(
           }
         },
 
+        setIsLogout() {
+          set(
+            () => ({
+              isLogout: true,
+            }),
+            false,
+            'set-is-logout'
+          );
+        },
+
         logoutAuth() {
           logout();
-          removeLogin();
           set(() => initialState, false, 'omnix-reset');
           localStorage.clear();
+
+          removeLogin();
         },
 
         setAuth(payload: any) {

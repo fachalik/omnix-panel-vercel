@@ -226,7 +226,6 @@ export default function CardItemActive(props: IItem) {
                 color: '#71717A',
               }}
             >
-              {/* Jan 17,2022 */}
               {moment(createdAt).format('MMMM DD, YYYY')}
             </div>
           </div>
@@ -237,11 +236,8 @@ export default function CardItemActive(props: IItem) {
         <Col xs={24} sm={24} md={24} lg={2} xl={2}>
           <Button
             block
-            type="primary"
-            // icon={<EllipsisOutlined style={{ fontSize: 20 }} />}
-          >
-            Detail
-          </Button>
+            icon={<EllipsisOutlined style={{ fontSize: 20 }} />}
+          ></Button>
         </Col>
       </Row>
     </Card>

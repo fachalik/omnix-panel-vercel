@@ -1,44 +1,116 @@
 'use client';
 
-import React from 'react';
-import { useParams, useRouter } from 'next/navigation';
-import { LeftOutlined } from '@ant-design/icons';
-import { Button } from 'antd';
+import { Card, Breadcrumb, Row, Col, Tabs, Form, Input } from 'antd';
+import Image from 'next/image';
+import CardSettingChannel from '@/components/AllCard/CardSettingChannel';
 
-import DetailOrder from '@/components/DetailOrder';
-import FormDetailOrder from '@/components/DetailOrder/Form/FormDetailOrder';
-
-function Page() {
-  const params: any = useParams();
-  const { push } = useRouter();
+export default function Page() {
   return (
     <div>
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'start',
-          alignItems: 'start',
-          flexDirection: 'column',
-        }}
-      >
-        <Button type="primary" onClick={() => push('/product-activation')}>
-          <LeftOutlined />
-          Back
-        </Button>
-        <DetailOrder id_product={params.id} />
+      <Card>
+        <Breadcrumb
+          separator=""
+          items={[
+            {
+              href: '',
+              title: 'Product Activation',
+            },
+            {
+              type: 'separator',
+              separator: '>',
+            },
+            {
+              title: 'OMNIX Marketer',
+            },
+          ]}
+        />
         <div
           style={{
-            width: '100%',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
+            background: '#F0F2F5',
+            padding: '20px 30px',
+            marginTop: 20,
+            marginBottom: 20,
           }}
         >
-          <FormDetailOrder id={params.id} />
+          <Row align="middle" gutter={[12, 12]}>
+            <Col xs={24} sm={24} md={24} lg={2}>
+              <Image
+                src={'/icons/channelmarketing.svg'}
+                width={100}
+                height={100}
+                style={{
+                  width: '100%',
+                  margin: 'auto',
+                  objectFit: 'contain',
+                  height: 60,
+                }}
+                alt={'marketing'}
+              />
+            </Col>
+            <Col xs={24} sm={24} md={24} lg={10}>
+              <div style={{ color: '#595959', fontSize: 17, fontWeight: 500 }}>
+                OMNIX Service
+              </div>
+            </Col>
+            <Col xs={24} sm={24} md={24} lg={4}>
+              <div style={{ fontSize: 12 }}>Role</div>
+              <div style={{ fontSize: 12 }}>Support Agent</div>
+            </Col>
+            <Col xs={24} sm={24} md={24} lg={4}>
+              <div style={{ fontSize: 12 }}>Phone Number</div>
+              <div style={{ fontSize: 12 }}>085156158466</div>
+            </Col>
+            <Col xs={24} sm={24} md={24} lg={4}>
+              <div style={{ fontSize: 12 }}>Last Login</div>
+              <div style={{ fontSize: 12 }}>Thu 28 Sept 2023</div>
+            </Col>
+            <Col span={24}>
+              <div style={{ fontSize: 12 }}>
+                Your current OMNIX Marketing account URL is
+              </div>
+              <div
+                style={{ fontSize: 12, color: '#6E5FC9', cursor: 'pointer' }}
+              >
+                https:’’nadafadhilahfitriyani-62787389821782787382.omnixmarketing.com
+              </div>
+            </Col>
+          </Row>
         </div>
-      </div>
+        <Tabs
+          items={[
+            {
+              label: 'Credential Information',
+              key: 'credential',
+              children: (
+                <Row>
+                  <Col xs={24} sm={24} md={24} lg={12}>
+                    <Form layout="vertical">
+                      <Form.Item label="Link Pembayaran">
+                        <Input value="Admin@omnix.ac.id" />
+                      </Form.Item>
+                      <Form.Item label="E-Wallet Agregator">
+                        <Input value="9812ncjsdn09237e0" />
+                      </Form.Item>
+                      <Form.Item label="API Static VA">
+                        <Input value="mileasejahtera" />
+                      </Form.Item>
+                    </Form>
+                  </Col>
+                </Row>
+              ),
+            },
+            {
+              label: 'Setting Channel',
+              key: 'setting',
+              children: <CardSettingChannel />,
+            },
+          ]}
+          tabBarStyle={{
+            marginLeft: 10,
+            marginRight: 10,
+          }}
+        ></Tabs>
+      </Card>
     </div>
   );
 }
-
-export default Page;
