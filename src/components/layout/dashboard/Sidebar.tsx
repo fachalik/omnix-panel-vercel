@@ -13,6 +13,7 @@ import { useRouter, usePathname } from 'next/navigation';
 import { palette } from '@/theme/themeConfig';
 import { useOtherStore, useAuthStore, useModalLogoutstore } from '@/store';
 import useIsMobile from '@/hooks/useIsMobile';
+import useWindowSize from '@/hooks/useWindowSize';
 
 //**--------------------------------------------------------------
 
@@ -20,27 +21,15 @@ export default function Sidebar() {
   const pathname = usePathname();
 
   const { push } = useRouter();
-  const { Sider } = Layout;
   const {
     other: { sidebarCollapse },
   } = useOtherStore((state) => state);
 
-  const { user, logoutAuth, setIsLogout } = useAuthStore((state) => state);
+  const { user, logoutAuth } = useAuthStore((state) => state);
   const { reset: resetModalLogout } = useModalLogoutstore((state) => state);
+  const { width, height } = useWindowSize();
 
   const isMobile = useIsMobile();
-
-  const route = () => {
-    switch (user?.role.name.toLocaleLowerCase()) {
-      case 'admin':
-        return adminRoutes;
-
-      case 'user':
-        return userRoutes;
-      default:
-        return [];
-    }
-  };
 
   const items: MenuProps['items'] = [
     {
@@ -78,12 +67,8 @@ export default function Sidebar() {
                 },
               },
               onOk: async () => {
-                await setIsLogout();
                 await logoutAuth();
-                await resetModalLogout
-                // logout().then((res) => {
-                //   logoutAuth();
-                // });
+                await resetModalLogout;
               },
             });
           }}
@@ -101,27 +86,20 @@ export default function Sidebar() {
   ];
 
   return (
-    <Sider
+    <Layout.Sider
       trigger={null}
       collapsible
       collapsed={sidebarCollapse}
       collapsedWidth={isMobile ? 0 : '4rem'}
       breakpoint="lg"
       style={{
-        overflow: 'auto',
-        height: '100vh',
-        position: 'fixed',
-        left: 0,
-        top: 0,
-        bottom: 0,
+        // height: '100vh',
+        overflow: 'hidden',
         background: palette.primary.dark,
+        position: 'sticky',
+        left: 0,
+        // position: 'relative',
       }}
-      // style={{
-      //   height: '100vh',
-      //   overflow: 'hidden',
-      //   background: palette.primary.dark,
-      //   position: 'relative',
-      // }}
       theme="dark"
       className="sidebar"
     >
@@ -156,7 +134,7 @@ export default function Sidebar() {
           padding: 5,
           marginTop: 20,
           overflow: 'hidden',
-          height: window.innerHeight - 150,
+          height: height - 150,
           position: 'relative',
           backgroundColor: palette.primary.dark,
         }}
@@ -176,17 +154,27 @@ export default function Sidebar() {
             key: val.key,
             icon: (
               <Tooltip placement="left">
-                <Image
-                  src={val.icon}
-                  width={18}
-                  height={18}
+                <div
                   style={{
-                    width: '18px',
-                    height: '18px',
-                    backgroundColor: val[idx] ? '#eeeeee' : '',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
                   }}
-                  alt={`${val.key}-${idx}`}
-                />
+                >
+                  <Image
+                    src={val.icon}
+                    width={36}
+                    height={36}
+                    style={
+                      {
+                        // width: '32px',
+                        // height: '32px',
+                        // backgroundColor: val[idx] ? '#eeeeee' : '',
+                      }
+                    }
+                    alt={`${val.key}-${idx}`}
+                  />
+                </div>
               </Tooltip>
             ),
             label: val.label,
@@ -214,6 +202,6 @@ export default function Sidebar() {
           </Avatar>
         </div>
       </Dropdown>
-    </Sider>
+    </Layout.Sider>
   );
 }

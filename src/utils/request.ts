@@ -31,7 +31,8 @@ http.interceptors.response.use(
       return Promise.reject(error);
     }
     if (response.status == 401) {
-      return http
+      console.log('REFRESHTOKEN FUCKING HERE', refreshToken);
+      return axios
         .post(
           `${process.env.NEXT_PUBLIC_APP_API_URL}api/v1/auth/refresh`,
           {},
@@ -42,7 +43,6 @@ http.interceptors.response.use(
           }
         )
         .then((values: any) => {
-          console.log(values);
           // If you are using localStorage, update the token and Authorization header here
           setLogin({
             refreshToken: values.refreshToken,

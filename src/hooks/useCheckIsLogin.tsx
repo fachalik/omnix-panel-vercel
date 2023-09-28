@@ -7,7 +7,7 @@ import { useAuthStore } from '@/store';
 
 const useCheckIsLogin = () => {
   const { user } = useAuthStore((state) => state);
-  const { push } = useRouter();
+  const { replace } = useRouter();
 
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const [isLogin, setIsLogin] = React.useState<boolean>(false);
@@ -15,7 +15,7 @@ const useCheckIsLogin = () => {
   React.useEffect(() => {
     setIsLoading(true);
     if (user === null) {
-      push('/');
+      replace('/');
       // return;
     } else {
       setIsLogin(true);
@@ -25,7 +25,7 @@ const useCheckIsLogin = () => {
 
     setIsLogin(true);
     setIsLoading(false);
-  }, [user, push]);
+  }, [user]);
 
   return { isLoading, isLogin };
 };

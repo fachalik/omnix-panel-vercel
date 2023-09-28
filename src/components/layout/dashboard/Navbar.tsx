@@ -30,28 +30,33 @@ export default function Navbar() {
     <Layout.Header
       style={{
         padding: 0,
-        background: colorBgContainer,
-        zIndex: 99,
-        marginLeft: 65,
-        position: 'fixed',
-        left: 0,
+        position: 'sticky',
         top: 0,
-        right: 0,
+        zIndex: 2,
+        background: '#fff',
+        overflowY: 'hidden',
+        alignItems: 'center',
+        display: 'flex',
+        width: '100%',
       }}
     >
-      <p style={{ marginLeft: '1em', fontSize: 16, fontWeight: 600 }}>
-        {actulPathname}
-      </p>
-      {/* <Button
-        type="text"
-        icon={sidebarCollapse ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-        onClick={() => setSidebarCollapse()}
+      <div
         style={{
-          fontSize: '16px',
-          width: 64,
-          height: 64,
+          marginLeft: '1em',
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
         }}
-      /> */}
+      >
+        <Button
+          type="text"
+          icon={sidebarCollapse ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+          onClick={() => setSidebarCollapse()}
+        />
+        <p style={{ marginLeft: '1em', fontSize: 16, fontWeight: 600 }}>
+          {actulPathname}
+        </p>
+      </div>
     </Layout.Header>
   );
 }

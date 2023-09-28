@@ -25,7 +25,6 @@ export default async function RootLayout({
     <html lang="id">
       <body className={jakartaSans.className}>
         <PersistAdaptor />
-
         <GoogleProvider>
           <TanstackQueryProvider>
             <StyledComponentsRegistry>

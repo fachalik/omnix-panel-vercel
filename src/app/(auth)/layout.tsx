@@ -13,9 +13,9 @@ export default function Layout({ children }: ILayoutForgetPassword) {
     <Loading />;
   }
 
-  if (!isLoading && isNotLogin) {
-    return <>{children}</>;
+  if (isLoading && isNotLogin) {
+    return;
   }
 
-  return <></>;
+  return <>{children}</>;
 }

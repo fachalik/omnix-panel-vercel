@@ -8,7 +8,7 @@ import { adminRoutes, userRoutes } from '@/routes';
 
 const useCheckIsNotLogin = () => {
   const { user } = useAuthStore((state) => state);
-  const { push } = useRouter();
+  const { replace } = useRouter();
 
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const [isNotLogin, setIsNotLogin] = React.useState<boolean>(false);
@@ -17,9 +17,9 @@ const useCheckIsNotLogin = () => {
     setIsLoading(true);
     if (user !== null) {
       if (user.role.name.toLowerCase() === 'user') {
-        push(userRoutes[0].key);
+        replace(userRoutes[0].key);
       } else {
-        push(adminRoutes[0].key);
+        replace(adminRoutes[0].key);
       }
       setIsNotLogin(false);
       // return;
@@ -31,7 +31,7 @@ const useCheckIsNotLogin = () => {
 
     setIsNotLogin(true);
     setIsLoading(false);
-  }, [user, push]);
+  }, [user]);
 
   return { isLoading, isNotLogin };
 };

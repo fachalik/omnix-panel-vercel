@@ -4,7 +4,7 @@ import { create } from 'zustand';
 import { devtools, persist } from 'zustand/middleware';
 import { postLogin } from '@/service/auth';
 import { adminRoutes, userRoutes } from '@/routes';
-import { setLogin, removeLogin } from '@/utils/sessions';
+import { setLogin, removeLogin, getLogin } from '@/utils/sessions';
 
 import { useAlertStore } from './alert';
 
@@ -24,7 +24,7 @@ interface IStoreAuth {
 
   logoutAuth: () => void;
 
-  setIsLogout: () => void;
+  setIsLogout: (isLogout: boolean) => void;
 }
 
 const initialState = {
@@ -91,10 +91,10 @@ export const useAuthStore = create<IStoreAuth>()(
           }
         },
 
-        setIsLogout() {
+        setIsLogout(isLogout: boolean) {
           set(
             () => ({
-              isLogout: true,
+              isLogout,
             }),
             false,
             'set-is-logout'
@@ -102,11 +102,17 @@ export const useAuthStore = create<IStoreAuth>()(
         },
 
         logoutAuth() {
-          logout();
-          set(() => initialState, false, 'omnix-reset');
-          localStorage.clear();
-
-          removeLogin();
+          const checklocalStorage = getLogin();
+          if (checklocalStorage !== undefined) {
+            logout();
+            set(() => initialState, false, 'omnix-reset');
+            localStorage.clear();
+            removeLogin();
+          } else {
+            set(() => initialState, false, 'omnix-reset');
+            localStorage.clear();
+            removeLogin();
+          }
         },
 
         setAuth(payload: any) {
