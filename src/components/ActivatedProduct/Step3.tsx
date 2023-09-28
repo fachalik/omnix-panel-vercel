@@ -3,9 +3,11 @@ import React from 'react';
 import Image from 'next/image';
 import { Card, Button } from 'antd';
 import { useRouter } from 'next/navigation';
+import { useActivatedProduct } from '@/store';
 
 function Step3() {
   const { push } = useRouter();
+  const { reset } = useActivatedProduct((state) => state);
 
   return (
     <div style={{ marginTop: '5em' }}>
@@ -39,7 +41,10 @@ function Step3() {
         style={{ marginTop: '1.5em' }}
         block
         type="primary"
-        onClick={() => push('product-activation')}
+        onClick={() => {
+          push('product-activation');
+          reset();
+        }}
       >
         Back to Product Activation
       </Button>

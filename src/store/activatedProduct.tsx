@@ -13,6 +13,7 @@ interface IStoreAuth {
   incCurrentState: () => void;
   decCurrentState: () => void;
   setBoolean: () => void;
+  reset: () => void;
 }
 
 const initialState = {
@@ -39,6 +40,10 @@ export const useActivatedProduct = create<IStoreAuth>()(
 
     setBoolean() {
       set((state: any) => ({ done: !state.done }), false);
+    },
+
+    reset() {
+      set((state: any) => initialState, false);
     },
   }))
 );
