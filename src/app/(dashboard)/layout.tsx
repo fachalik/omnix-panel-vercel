@@ -41,6 +41,18 @@ export default function DashboardLayout({ children }: IDashboardLayout) {
     return;
   }
 
+  const contentWidth = () => {
+    if (width < 769) {
+      if (!sidebarCollapse) {
+        return width - (sidebarCollapse ? 64 : 200);
+      } else {
+        return width - (sidebarCollapse ? 64 : 0);
+      }
+    } else {
+      return width - (sidebarCollapse ? 64 : 200);
+    }
+  };
+
   return (
     <div style={{ display: 'flex', height: '100vh' }}>
       <CheckPersistor />
@@ -91,8 +103,9 @@ export default function DashboardLayout({ children }: IDashboardLayout) {
           <Navbar />
           <div
             style={{
-              width: width - (sidebarCollapse ? 64 : 200),
+              width: contentWidth(),
               position: 'fixed',
+              overflowX: 'hidden',
               overflowY: 'scroll',
               top: 60,
               right: 0,

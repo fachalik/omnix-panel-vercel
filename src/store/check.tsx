@@ -9,9 +9,6 @@ export default function CheckPersistor() {
   const { showModal } = useModalLogoutstore((state) => state);
   const { isLogout, setIsLogout } = useAuthStore((state) => state);
 
-  console.log('test', checklocalStorage === undefined, isLogout);
-  // console.log('MASOK>>>>', Object.keys(checklocalStorage).length, isLogout);
-
   useEffect(() => {
     let check = true;
 
