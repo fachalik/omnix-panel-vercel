@@ -26,7 +26,7 @@ export const postLogin = (payload: any) =>
       const message: string = err.response
         ? `${err.response.data.message}`
         : 'Oops, something wrong with our server, please try again later.';
-      reject(message);
+      reject(err);
     }
   });
 

@@ -38,6 +38,20 @@ export default function CardItemActive(props: IItem) {
     package_description,
     createdAt,
   } = item;
+
+  const mapIcon = (icon: string) => {
+    console.log('icon', icon);
+    switch (icon.toLowerCase()) {
+      case 'omnix_services':
+        return '/icons/channelservice.svg';
+
+      case 'omnix_marketing':
+        return '/icons/channelmarketing.svg';
+
+      default:
+        break;
+    }
+  };
   return (
     <Card
       bodyStyle={{
@@ -60,7 +74,7 @@ export default function CardItemActive(props: IItem) {
         }}
       >
         <Col xs={24} sm={24} md={24} lg={1} xl={1}>
-          <Avatar size={'large'}>{package_name[0].toUpperCase()}</Avatar>
+          <Avatar size={'large'} src={mapIcon(package_type)} />
         </Col>
         <Col xs={24} sm={24} md={24} lg={3} xl={3}>
           <div

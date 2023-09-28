@@ -5,10 +5,12 @@ import React from 'react';
 import Sidebar from '@Component/layout/dashboard/Sidebar';
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
 import { Layout, Button, theme } from 'antd';
+import { usePathname } from 'next/navigation';
 
 import { useOtherStore } from '@/store';
 
 export default function Navbar() {
+  const pathname = usePathname();
   const {
     token: { colorBgContainer },
   } = theme.useToken();
@@ -17,6 +19,12 @@ export default function Navbar() {
     other: { sidebarCollapse },
     setSidebarCollapse,
   } = useOtherStore((state) => state);
+
+  const actulPathname = pathname
+    .split('/')[1]
+    .split('-')
+    .join(' ')
+    .toUpperCase();
 
   return (
     <Layout.Header
@@ -31,6 +39,9 @@ export default function Navbar() {
         right: 0,
       }}
     >
+      <p style={{ marginLeft: '1em', fontSize: 16, fontWeight: 600 }}>
+        {actulPathname}
+      </p>
       {/* <Button
         type="text"
         icon={sidebarCollapse ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}

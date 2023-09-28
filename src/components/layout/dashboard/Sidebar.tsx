@@ -186,7 +186,7 @@ export default function Sidebar() {
                 />
               </Tooltip>
             ),
-            label: val.name,
+            label: val.label,
           };
         })}
       />

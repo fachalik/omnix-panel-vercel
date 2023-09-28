@@ -38,21 +38,18 @@ export const useAuthStore = create<IStoreAuth>()(
         ...initialState,
 
         async login(payload: { email: string; password: string }) {
-          // const { push } = useRouter();
-          const response: UserType = await postLogin(payload);
-          console.log('RESPONSE>>>>', response);
+          const response: UserType = await postLogin(payload).catch((err) => {
+            if (err.response.data.status == '422') {
+              const payload = {
+                status: `Email not exists`,
+                hit: true,
+                type: 'error',
+              };
+              useAlertStore.getState().setAlert(payload);
+            }
+          });
+
           if (response.user.status.name.toLowerCase() !== 'inactive') {
-            console.log('active');
-            // set(
-            //   (state: any) => ({
-            //     auth: {
-            //       token: response.token,
-            //       User: response,
-            //       error: '',
-            //     },
-            //   }),
-            //   false
-            // );
             set(
               (state: any) => ({
                 token: response.token,
