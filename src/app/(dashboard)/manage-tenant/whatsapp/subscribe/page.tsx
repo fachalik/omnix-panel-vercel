@@ -19,7 +19,7 @@ export default function Page() {
         'https://omnixpanel-api.libra.studio/api/v1/setting-whatsapp/callback',
       stream_url:
         'https://omnixpanel-api.libra.studio/api/v1/setting-whatsapp/stream',
-      redirect_url: 'https://omnix-panel-vercel.vercel.app/',
+      redirect_url: 'https://omnix-panel.netlify.app/',
     };
     const setWA: any = await settingWhatsapp(payload);
 
@@ -29,7 +29,7 @@ export default function Page() {
         'https://omnixpanel-api.libra.studio/api/v1/setting-whatsapp/callback',
       stream_url:
         'https://omnixpanel-api.libra.studio/api/v1/setting-whatsapp/stream',
-      redirect_url: 'https://omnix-panel-vercel.vercel.app/',
+      redirect_url: 'https://omnix-panel.netlify.app/',
     };
 
     const auth = await generateOauth(GOAuth);

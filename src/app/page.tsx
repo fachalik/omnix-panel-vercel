@@ -27,7 +27,7 @@ export default function Home() {
   const redirect =
     process.env.NODE_ENV === 'development'
       ? 'http://localhost:3000/google'
-      : 'https://omnix-panel-vercel.vercel.app/google';
+      : 'https://omnix-panel.netlify.app/google';
 
   const googleLogin = async () => {
     thirdPartyLogin(

@@ -10,7 +10,7 @@ export default function thirdPartyLogin(href: string): Promise<any> | null {
       if (
         [
           'http://localhost:3000',
-          'https://omnix-panel-vercel.vercel.app',
+          'https://omnix-panel.netlify.app/',
         ].includes(origin) === false
       )
         return;
