@@ -90,8 +90,7 @@ export default function Sidebar() {
     console.log('ROLE', role);
     switch (role) {
       case 'user':
-        // return userRoutes;
-        return resellerRoutes;
+        return userRoutes;
 
       case 'admin':
         return adminRoutes;
