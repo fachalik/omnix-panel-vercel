@@ -18,7 +18,7 @@ export default function Page() {
             title: 'Channel Subscription',
           },
           {
-            title: 'Telegram',
+            title: 'Facebook',
           },
         ]}
       />
@@ -41,24 +41,25 @@ export default function Page() {
           }}
         >
           <Image
-            src={'/icons/telegram.svg'}
-            alt="omnix-Telegram"
+            src={'/icons/facebook.svg'}
+            alt="omnix-facebook"
             width={30}
             height={30}
           />
-          <div style={{ fontSize: 20, fontWeight: 'bold' }}>
-            Telegram Messaging
-          </div>
+          <div style={{ fontSize: 20, fontWeight: 'bold' }}>Facebook</div>
           <div>by Omnix</div>
         </div>
         <Button
           type="primary"
-          onClick={() => push('/channel-subscription/telegram/subscribe')}
+          onClick={() => push('/channel-subscription/facebook/subscribe')}
         >
-          Subscription Telegram
+          Subscription Facebook
         </Button>
       </div>
-      <div>A storefront to billions of business opportunities</div>
+      <div>
+        Integrate your Facebook business account and manage all your Facebook
+        conversations.
+      </div>
       <Divider />
       <div>
         <p style={{ fontWeight: 'bold', fontSize: 16, marginBottom: 10 }}>
@@ -68,13 +69,12 @@ export default function Page() {
           Pra-instalasi
         </p>
         <p style={{ marginBottom: 20 }}>
-          Sebelum Anda dapat melakukan subscribe Telegram, Anda harus memiliki:
+          Sebelum Anda dapat melakukan subscribe Facebook, Anda harus memiliki:
         </p>
-        <p style={{ marginBottom: 10 }}>1. Profil Telegram</p>
+        <p style={{ marginBottom: 10 }}>1. Profil Facebook</p>
         <p style={{ marginBottom: 10 }}>
-          2. Halaman Telegram dengan akses admin
+          2. Halaman Facebook dengan akses admin
         </p>
-        <p style={{ marginBottom: 10 }}>3. Izin perpesanan diaktifkan</p>
       </div>
       <div>
         <p style={{ fontWeight: 'bold', fontSize: 14, marginBottom: 10 }}>
@@ -92,8 +92,11 @@ export default function Page() {
           Subscribe
         </p>
         <p style={{ marginBottom: 10 }}>
-          Kami akan memandu Anda melalui proses subscribe, termasuk <br />
-          menghubungkan akun Telegram Business dan Halaman Telegram Anda
+          Kami akan memandu Anda melalui proses subscribe, termasuk masuk ke
+          <br />
+          akun Facebook Anda, menautkan halaman Facebook Anda, dan memberikan
+          <br />
+          izin yang benar.
         </p>
       </div>
     </div>

@@ -14,9 +14,11 @@ export default function Page() {
         style={{ marginBottom: '1em' }}
         items={[
           {
+            href: '/channel-subscription',
             title: 'Channel Subscription',
           },
           {
+            href: '',
             title: 'Facebook',
           },
         ]}

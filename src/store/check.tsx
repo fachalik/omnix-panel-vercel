@@ -12,19 +12,26 @@ export default function CheckPersistor() {
   useEffect(() => {
     let check = true;
 
+    console.log('FUCKING HERE', checklocalStorage);
+    console.log(window.location.pathname);
+
     if (check) {
-      if (checklocalStorage === undefined && window.location.pathname !== '/') {
+      if (!checklocalStorage && window.location.pathname !== '/') {
+        console.log('FUCK FUCK FUCK');
         setIsLogout(true);
-      } else {
+      }
+
+      if (!checklocalStorage && window.location.pathname === '/') {
         setIsLogout(false);
       }
-      if (checklocalStorage === undefined && isLogout) {
+
+      if (!checklocalStorage && isLogout) {
         showModal();
       }
     }
     return () => {
       check = false;
     };
-  }, [isLogout]);
+  }, [isLogout, checklocalStorage]);
   return <></>;
 }

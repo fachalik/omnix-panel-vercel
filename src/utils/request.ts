@@ -31,7 +31,6 @@ http.interceptors.response.use(
       return Promise.reject(error);
     }
     if (response.status == 401) {
-      console.log('REFRESHTOKEN FUCKING HERE', refreshToken);
       return axios
         .post(
           `${process.env.NEXT_PUBLIC_APP_API_URL}api/v1/auth/refresh`,

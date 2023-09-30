@@ -3,7 +3,7 @@
 import React from 'react';
 import Image from 'next/image';
 
-import { adminRoutes, userRoutes } from '@/routes';
+import { adminRoutes, userRoutes, resellerRoutes } from '@/routes';
 
 import { LogoutOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
 import { Layout, Menu, Avatar, Dropdown, Modal, Badge, Tooltip } from 'antd';
@@ -25,7 +25,7 @@ export default function Sidebar() {
     other: { sidebarCollapse },
   } = useOtherStore((state) => state);
 
-  const { user, logoutAuth } = useAuthStore((state) => state);
+  const { user, logoutAuth, setIsLogout } = useAuthStore((state) => state);
   const { reset: resetModalLogout } = useModalLogoutstore((state) => state);
   const { width, height } = useWindowSize();
 
@@ -69,6 +69,7 @@ export default function Sidebar() {
               onOk: async () => {
                 await logoutAuth();
                 await resetModalLogout;
+                await setIsLogout(false);
               },
             });
           }}
@@ -84,6 +85,24 @@ export default function Sidebar() {
       },
     },
   ];
+
+  const mapRoute = (role: string): any => {
+    console.log('ROLE', role);
+    switch (role) {
+      case 'user':
+        // return userRoutes;
+        return resellerRoutes;
+
+      case 'admin':
+        return adminRoutes;
+
+      case 'reseller':
+        return resellerRoutes;
+
+      default:
+        return [];
+    }
+  };
 
   return (
     <Layout.Sider
@@ -146,40 +165,39 @@ export default function Sidebar() {
         defaultSelectedKeys={[pathname]}
         defaultOpenKeys={[pathname]}
         selectedKeys={[pathname]}
-        items={(user?.role.name.toLocaleLowerCase() === 'admin'
-          ? adminRoutes
-          : userRoutes
-        ).map((val: any, idx: number) => {
-          return {
-            key: val.key,
-            icon: (
-              <Tooltip placement="left">
-                <div
-                  style={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                  }}
-                >
-                  <Image
-                    src={val.icon}
-                    width={36}
-                    height={36}
-                    style={
-                      {
-                        // width: '32px',
-                        // height: '32px',
-                        // backgroundColor: val[idx] ? '#eeeeee' : '',
+        items={mapRoute(user?.role.name.toLowerCase() ?? '').map(
+          (val: any, idx: number) => {
+            return {
+              key: val.key,
+              icon: (
+                <Tooltip placement="left">
+                  <div
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                    }}
+                  >
+                    <Image
+                      src={val.icon}
+                      width={36}
+                      height={36}
+                      style={
+                        {
+                          // width: '32px',
+                          // height: '32px',
+                          // backgroundColor: val[idx] ? '#eeeeee' : '',
+                        }
                       }
-                    }
-                    alt={`${val.key}-${idx}`}
-                  />
-                </div>
-              </Tooltip>
-            ),
-            label: val.label,
-          };
-        })}
+                      alt={`${val.key}-${idx}`}
+                    />
+                  </div>
+                </Tooltip>
+              ),
+              label: val.label,
+            };
+          }
+        )}
       />
       <Dropdown menu={{ items }} placement="topRight" trigger={['click']}>
         <div

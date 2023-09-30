@@ -4,8 +4,11 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { timeout } from '../../../utils/utilitys';
 import { useAuthStore } from '../../../store';
+import { register } from '@/service/auth';
+import { useRouter } from 'next/navigation';
 
 export default function useFormSignUpReseller() {
+  const { push } = useRouter();
   const { login } = useAuthStore((state) => state);
 
   const initialValues: any = {
@@ -40,8 +43,10 @@ export default function useFormSignUpReseller() {
     enableReinitialize: true,
     initialValues: initialValues,
     onSubmit: async (value) => {
-      const payload = value;
-      console.log(payload);
+      const payload = { ...value, role: 3 };
+      await register(payload)
+        .then(() => push('/verify'))
+        .catch((err) => console.log(err));
       await timeout(1000);
     },
     validationSchema: yupAdd,

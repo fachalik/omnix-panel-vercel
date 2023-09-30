@@ -230,47 +230,5 @@ export default function FormSignUpUser() {
         </Button>
       </Form>
     </main>
-    // <Box>
-    //   <Box
-    //     mt={2}
-    //     sx={{
-    //       bgcolor: '#fff',
-    //       borderRadius: 1,
-    //     }}
-    //   >
-    //     <Grid
-    //       container
-    //       spacing={2}
-    //       component="form"
-    //       autoComplete="off"
-    //       onSubmit={formik.handleSubmit}
-    //     >
-    //       <Grid item xs={12}>
-    //         <Typography variant="subtitle1" marginBottom={1}>
-    //           Name
-    //         </Typography>
-    //         <TextField
-    //           fullWidth
-    //           placeholder="Input name title"
-    //           variant="outlined"
-    //           name="name"
-    //           value={formik.values.name}
-    //           onBlur={formik.handleBlur}
-    //           onChange={formik.handleChange}
-    //           error={Boolean(formik.touched.name && formik.errors.name)}
-    //           helperText={formik.touched.name && formik.errors.name}
-    //         />
-    //       </Grid>
-
-    //       <Grid item xs={12}>
-    //         <Stack alignItems="end">
-    //           <Button disabled={isLoading} type="submit">
-    //             {isLoading ? <CircularProgress color="inherit" size={'0.875rem'} /> : 'Submit'}
-    //           </Button>
-    //         </Stack>
-    //       </Grid>
-    //     </Grid>
-    //   </Box>
-    // </Box>
   );
 }

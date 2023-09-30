@@ -4,7 +4,7 @@ import React from 'react';
 import { useRouter } from 'next/navigation';
 import { timeout } from '@/utils/utilitys';
 import { useAuthStore } from '@/store';
-import { adminRoutes, userRoutes } from '@/routes';
+import { adminRoutes, userRoutes, resellerRoutes } from '@/routes';
 
 const useCheckIsNotLogin = () => {
   const { user } = useAuthStore((state) => state);
@@ -16,11 +16,24 @@ const useCheckIsNotLogin = () => {
   React.useEffect(() => {
     setIsLoading(true);
     if (user !== null) {
-      if (user.role.name.toLowerCase() === 'user') {
-        replace(userRoutes[0].key);
-      } else {
-        replace(adminRoutes[0].key);
+      switch (user.role.name.toLowerCase()) {
+        case 'user':
+          replace(userRoutes[0].key);
+
+        case 'admin':
+          replace(adminRoutes[0].key);
+
+        case 'reseller':
+          replace(resellerRoutes[0].key);
+
+        default:
+          break;
       }
+      // if (user.role.name.toLowerCase() === 'user') {
+      //   replace(userRoutes[0].key);
+      // } else {
+      //   replace(adminRoutes[0].key);
+      // }
       setIsNotLogin(false);
       // return;
     } else {

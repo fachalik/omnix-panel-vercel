@@ -9,16 +9,13 @@ export default function Page() {
     <div>
       <Card>
         <Breadcrumb
-          separator=""
+          separator=">"
           items={[
             {
-              href: '/product-activation',
-              title: 'Product Activation',
+              href: '/manage-tenant',
+              title: 'Manage Tenant',
             },
-            {
-              type: 'separator',
-              separator: '>',
-            },
+
             {
               title: 'OMNIX Marketer',
             },
