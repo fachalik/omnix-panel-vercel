@@ -2,25 +2,9 @@
 
 import React from 'react';
 import dynamic from 'next/dynamic';
-import { Spin } from 'antd';
 const Line = dynamic(
   () => import('@ant-design/charts').then(({ Line }) => Line),
-  {
-    loading: () => (
-      <div
-        style={{
-          width: '100%',
-          height: 200,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <Spin />
-      </div>
-    ),
-    ssr: false,
-  }
+  { ssr: false }
 );
 
 function SpendingChart() {

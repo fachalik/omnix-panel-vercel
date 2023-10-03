@@ -4,6 +4,7 @@ import Home from '@/assets/icons/Home.svg';
 import Channel from '@/assets/icons/Channel.svg';
 import Planet from '@/assets/icons/Planet.svg';
 import Windows from '@/assets/icons/Windows.svg';
+import Dashboard from '@/assets/icons/Dashboard.svg';
 
 const path = '/reseller';
 
@@ -15,7 +16,7 @@ const resellerRoutes: any = [
   },
   {
     key: `${path}/dashboard`,
-    icon: Channel,
+    icon: Dashboard,
     label: 'Dashboard',
   },
   // {
