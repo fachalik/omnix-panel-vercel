@@ -1,10 +1,10 @@
+'use client';
+
 import React from 'react';
 import { Line } from '@ant-design/charts';
 
 function SpendingChart() {
   const [data, setData] = React.useState([]);
-
-  // console.log('DATA', data);
 
   React.useEffect(() => {
     asyncFetch();
