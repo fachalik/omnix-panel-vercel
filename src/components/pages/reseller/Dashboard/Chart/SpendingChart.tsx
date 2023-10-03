@@ -4,7 +4,7 @@ import { Line } from '@ant-design/charts';
 function SpendingChart() {
   const [data, setData] = React.useState([]);
 
-  console.log('DATA', data);
+  // console.log('DATA', data);
 
   React.useEffect(() => {
     asyncFetch();
@@ -30,7 +30,7 @@ function SpendingChart() {
     },
     yAxis: {
       label: {
-        formatter: (v) =>
+        formatter: (v: any) =>
           `${v}`.replace(/\d{1,3}(?=(\d{3})+$)/g, (s) => `${s},`),
       },
     },
