@@ -3,21 +3,22 @@
 import Home from '@/assets/icons/Home.svg';
 import Channel from '@/assets/icons/Channel.svg';
 import Planet from '@/assets/icons/Planet.svg';
-import Windows from '@/assets/icons/Windows.svg';
+
+const path = '/user';
 
 const userRoutes: any = [
   {
-    key: '/home',
+    key: `${path}/home`,
     icon: Home,
     label: 'Home',
   },
   {
-    key: '/channel-subscription',
+    key: `${path}/channel-subscription`,
     icon: Channel,
     label: 'Channel Subscription',
   },
   {
-    key: '/product-activation',
+    key: `${path}/product-activation`,
     icon: Planet,
     label: 'Product Activation',
   },

@@ -30,8 +30,6 @@ function Page() {
       });
   };
 
-  console.log('isSuccess', isSuccess);
-
   return (
     <div
       style={{

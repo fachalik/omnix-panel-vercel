@@ -21,7 +21,7 @@ export default function Navbar() {
   } = useOtherStore((state) => state);
 
   const actulPathname = pathname
-    .split('/')[1]
+    .split('/')[2]
     .split('-')
     .join(' ')
     .toUpperCase();

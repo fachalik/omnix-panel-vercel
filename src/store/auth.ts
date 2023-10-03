@@ -3,7 +3,7 @@
 import { create } from 'zustand';
 import { devtools, persist } from 'zustand/middleware';
 import { postLogin } from '@/service/auth';
-import { adminRoutes, userRoutes } from '@/routes';
+import { adminRoutes, userRoutes, resellerRoutes } from '@/routes';
 import { setLogin, removeLogin, getLogin } from '@/utils/sessions';
 
 import { useAlertStore } from './alert';
@@ -74,10 +74,18 @@ export const useAuthStore = create<IStoreAuth>()(
             await useAlertStore.getState().setAlert(payload);
 
             if (typeof window !== 'undefined') {
-              if (response.user.role.name.toLocaleLowerCase() === 'user') {
-                window.location.replace(userRoutes[0].key);
-              } else {
-                window.location.replace(adminRoutes[0].key);
+              switch (response.user.role.name.toLocaleLowerCase()) {
+                case 'user':
+                  return window.location.replace(userRoutes[0].key);
+
+                case 'admin':
+                  return window.location.replace(adminRoutes[0].key);
+
+                case 'reseller':
+                  return window.location.replace(resellerRoutes[0].key);
+
+                default:
+                  break;
               }
             }
           } else {

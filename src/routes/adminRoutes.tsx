@@ -5,14 +5,16 @@ import Channel from '@/assets/icons/Channel.svg';
 import Planet from '@/assets/icons/Planet.svg';
 import Windows from '@/assets/icons/Windows.svg';
 
+const path = '/admin';
+
 const adminRoutes: any = [
   {
-    key: '/dashboard',
+    key: `${path}/home`,
     icon: Home,
     label: 'Home',
   },
   {
-    key: '/manage-tenant',
+    key: `${path}/manage-tenant`,
     icon: Channel,
     label: 'Manage Tenant',
   },

@@ -29,11 +29,7 @@ const useCheckIsNotLogin = () => {
         default:
           break;
       }
-      // if (user.role.name.toLowerCase() === 'user') {
-      //   replace(userRoutes[0].key);
-      // } else {
-      //   replace(adminRoutes[0].key);
-      // }
+
       setIsNotLogin(false);
       // return;
     } else {

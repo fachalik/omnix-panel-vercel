@@ -2,11 +2,15 @@
 
 import React from 'react';
 import { Input, Button, Row, Col, Card, Avatar, Badge } from 'antd';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 
 export default function ExploreChannel() {
   const { push } = useRouter();
+  const pathname = usePathname();
   const [search, setSearch] = React.useState<string>('');
+
+  const role = pathname.split('/')[1];
+
   const menu: any = [
     {
       key: 'whatsapp',
@@ -128,7 +132,7 @@ export default function ExploreChannel() {
                       type="primary"
                       disabled={!item.isActive}
                       onClick={() => {
-                        push(`/channel-subscription/${item.key}`);
+                        push(`/${role}/channel-subscription/${item.key}`);
                       }}
                     >
                       Active now

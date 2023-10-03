@@ -16,7 +16,10 @@ export default function useFormDetailOrder() {
   };
 
   const yupAdd = yup.object({
-    nama_perusahaan: yup.string().required('Nama perusahaan is required'),
+    nama_perusahaan: yup
+      .string()
+      .required('Nama perusahaan is required')
+      .matches(/^[aA-zZ\s]+$/, 'Only alphabets are allowed for this field '),
   });
 
   const formik = useFormik({

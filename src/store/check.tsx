@@ -12,12 +12,8 @@ export default function CheckPersistor() {
   useEffect(() => {
     let check = true;
 
-    console.log('FUCKING HERE', checklocalStorage);
-    console.log(window.location.pathname);
-
     if (check) {
       if (!checklocalStorage && window.location.pathname !== '/') {
-        console.log('FUCK FUCK FUCK');
         setIsLogout(true);
       }
 

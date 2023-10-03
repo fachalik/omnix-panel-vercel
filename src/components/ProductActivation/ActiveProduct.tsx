@@ -7,6 +7,7 @@ import { useGetProduct } from './Hooks/useGetProduct';
 import { getLogin } from '@/utils/sessions';
 import Loading from '../Loading';
 import CardItemActive from '@/components/AllCard/CardItemActive';
+import { Empty } from 'antd';
 
 export default function ActiveProduct() {
   const { data, isLoading, isSuccess } = useGetProduct({
@@ -18,6 +19,8 @@ export default function ActiveProduct() {
   if (isLoading) {
     return <Loading />;
   }
+
+  console.log(isLoading, isSuccess);
 
   if (!isLoading && isSuccess) {
     return (
@@ -33,7 +36,8 @@ export default function ActiveProduct() {
               alignItems: 'center',
             }}
           >
-            <p style={{ fontWeight: 400, fontSize: 16 }}>No Data</p>
+            <Empty />
+            <p>asd</p>
           </div>
         )}
       </div>

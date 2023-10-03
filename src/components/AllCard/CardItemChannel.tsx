@@ -3,7 +3,7 @@ import React from 'react';
 
 import { Button, Card, Row, Col, Tabs, Avatar, Tag } from 'antd';
 import moment from 'moment';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import { EllipsisOutlined } from '@ant-design/icons';
 
 interface ICardItem {
@@ -20,9 +20,13 @@ interface IItem {
 }
 
 export default function CardItemChannel(props: IItem) {
+  const pathname = usePathname();
   const { push } = useRouter();
   const { item } = props;
   const { icon, package_name, package_type, totalAccount, createdAt } = item;
+
+  const role = pathname.split('/')[1];
+
   return (
     <Card
       bodyStyle={{
@@ -155,7 +159,7 @@ export default function CardItemChannel(props: IItem) {
         </Col>
         <Col xs={24} sm={24} md={24} lg={2} xl={2}>
           <Button
-            onClick={() => push(`/channel-subscription/1`)}
+            onClick={() => push(`/${role}/channel-subscription/1`)}
             block
             icon={<EllipsisOutlined style={{ fontSize: 20 }} />}
           ></Button>
